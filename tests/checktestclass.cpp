@@ -158,8 +158,9 @@ void checktestclass::testIs_checkmate() {
     bool castling1[] = {0, 0, 0, 0};
     board _board1(pb1, castling1, 0, 0, 3, 3, black, 200, 100);
 
-    CPPUNIT_ASSERT_MESSAGE("failed to recognise that black is in checkmate in test 1", _board1.is_checkmate(black));
-    CPPUNIT_ASSERT_MESSAGE("failed to recognise that white is not in checkmate in test 1", !_board1.is_checkmate(white));
+    CPPUNIT_ASSERT_MESSAGE("failed to recognise that black is in checkmate in test 1", _board1.is_checkmate());
+    _board1.set_side(white);
+    CPPUNIT_ASSERT_MESSAGE("failed to recognise that white is not in checkmate in test 1", !_board1.is_checkmate());
 
 
     // board 2: black in check, white nothing
@@ -191,8 +192,9 @@ void checktestclass::testIs_checkmate() {
     //    std::cout << "CHILD\n";
     //    child.print_board();
 
-    CPPUNIT_ASSERT_MESSAGE("failed to recognise that black is not in checkmate in test 2", !_board2.is_checkmate(black));
-    CPPUNIT_ASSERT_MESSAGE("failed to recognise that white is not in checkmate in test 2", !_board2.is_checkmate(white));
+    CPPUNIT_ASSERT_MESSAGE("failed to recognise that black is not in checkmate in test 2", !_board2.is_checkmate());
+    _board2.set_side(white);
+    CPPUNIT_ASSERT_MESSAGE("failed to recognise that white is not in checkmate in test 2", !_board2.is_checkmate());
 
 
     // board 3: black in check, white in check
@@ -213,8 +215,9 @@ void checktestclass::testIs_checkmate() {
     bool castling3[] = {0, 0, 0, 0};
     board _board3(pb3, castling3, 0, 0, 3, 3, black, 200, 100);
 
-    CPPUNIT_ASSERT_MESSAGE("failed to recognise that black is not in checkmate in test 3", !_board3.is_checkmate(black));
-    CPPUNIT_ASSERT_MESSAGE("failed to recognise that white is not in checkmate in test 3", !_board3.is_checkmate(white));
+    CPPUNIT_ASSERT_MESSAGE("failed to recognise that black is not in checkmate in test 3", !_board3.is_checkmate());
+    _board3.set_side(white);
+    CPPUNIT_ASSERT_MESSAGE("failed to recognise that white is not in checkmate in test 3", !_board3.is_checkmate());
 
 
     // board 4: black in check, white in checkmate
@@ -235,8 +238,9 @@ void checktestclass::testIs_checkmate() {
     bool castling4[] = {0, 0, 0, 0};
     board _board4(pb4, castling4, 0, 0, 3, 3, black, 200, 100);
 
-    CPPUNIT_ASSERT_MESSAGE("failed to recognise that black is not in checkmate in test 4", !_board4.is_checkmate(black));
-    CPPUNIT_ASSERT_MESSAGE("failed to recognise that white is in checkmate in test 4", _board4.is_checkmate(white));
+    CPPUNIT_ASSERT_MESSAGE("failed to recognise that black is not in checkmate in test 4", !_board4.is_checkmate());
+    _board4.set_side(white);
+    CPPUNIT_ASSERT_MESSAGE("failed to recognise that white is in checkmate in test 4", _board4.is_checkmate());
 
 
     // board 5: black in check, white in checkmate - testing "no castling through/out of check"
@@ -257,8 +261,9 @@ void checktestclass::testIs_checkmate() {
     bool castling5[] = {1, 0, 0, 0};
     board _board5(pb5, castling5, 0, 0, 3, 3, white, 200, 100);
 
-    CPPUNIT_ASSERT_MESSAGE("failed to recognise that black is not in checkmate in test 5", !_board5.is_checkmate(black));
-    CPPUNIT_ASSERT_MESSAGE("failed to recognise that white is in checkmate in test 5", _board5.is_checkmate(white));
+    CPPUNIT_ASSERT_MESSAGE("failed to recognise that white is in checkmate in test 5", _board5.is_checkmate());
+    _board5.set_side(black);
+    CPPUNIT_ASSERT_MESSAGE("failed to recognise that black is not in checkmate in test 5", !_board5.is_checkmate());
 
 }
 
