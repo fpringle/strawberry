@@ -498,33 +498,6 @@ void boardtestclass::testFEN() {
     CPPUNIT_ASSERT_MESSAGE("FEN input test 2 failed", ss.str() == ss2.str());
 }
 
-void boardtestclass::testSet_piece() {
-    bitboard bb[12];
-    bb[0] = 0x000000000001ff00;
-    bb[1] = 0x0000000000000081;
-    bb[2] = 0x0000000000000042;
-    bb[3] = 0x0000000000000024;
-    bb[4] = 0x0000000000000008;
-    bb[5] = 0x1000000000000010;
-
-    bb[6] = 0x00ff000000000000;
-    bb[7] = 0x8100000000000000;
-    bb[8] = 0x4200000000000000;
-    bb[9] = 0x2400000000000000;
-    bb[10] = 0x0800000000000000;
-    bb[11] = 0x1000000000000000;
-
-    bool castling[] = {1, 1, 1, 1};
-
-    board _board1;
-    board _board2(bb, castling, 0, 0, 0, 0, white, 0, 0);
-
-    _board1.set_piece(whitePawn, 16);
-    _board1.set_piece(whiteKing, 60);
-
-    CPPUNIT_ASSERT(_board1 == _board2);
-}
-
 void boardtestclass::testSet_side() {
     bitboard bb[12];
     bb[0] = 0x000000000001ff00;
@@ -551,22 +524,3 @@ void boardtestclass::testSet_side() {
     CPPUNIT_ASSERT(_board1 == _board2);
 }
 
-void boardtestclass::testWhiteSquares() {
-    board _board;
-    CPPUNIT_ASSERT(_board.whiteSquares() == 0x000000000000ffff);
-}
-
-void boardtestclass::testBlackSquares() {
-    board _board;
-    CPPUNIT_ASSERT(_board.blackSquares() == 0xffff000000000000);
-}
-
-void boardtestclass::testTakenSquares() {
-    board _board;
-    CPPUNIT_ASSERT(_board.takenSquares() == 0xffff00000000ffff);
-}
-
-void boardtestclass::testEmptySquares() {
-    board _board;
-    CPPUNIT_ASSERT(_board.emptySquares() == 0x0000ffffffff0000);
-}

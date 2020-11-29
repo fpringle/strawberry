@@ -7,8 +7,8 @@
  */
 
 #include "twiddletestclass.h"
-#include "board.h"
 #include "twiddle.h"
+#include "board.h"
 
 
 using namespace chessCore;

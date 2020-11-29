@@ -24,13 +24,7 @@ class boardtestclass : public CPPUNIT_NS::TestFixture {
     CPPUNIT_TEST(testPrint_all);
     CPPUNIT_TEST(testFEN);
 
-    CPPUNIT_TEST(testSet_piece);
     CPPUNIT_TEST(testSet_side);
-
-    CPPUNIT_TEST(testWhiteSquares);
-    CPPUNIT_TEST(testBlackSquares);
-    CPPUNIT_TEST(testTakenSquares);
-    CPPUNIT_TEST(testEmptySquares);
 
     CPPUNIT_TEST_SUITE_END();
 
@@ -51,13 +45,7 @@ private:
     void testPrint_all();
     void testFEN();
 
-    void testSet_piece();
     void testSet_side();
-
-    void testWhiteSquares();
-    void testBlackSquares();
-    void testTakenSquares();
-    void testEmptySquares();
 
 };
 

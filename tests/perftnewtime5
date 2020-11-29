@@ -1,0 +1,85 @@
+perfttestclass::testStartBoard
+Completed depth 0
+    Time taken: 6e-06
+Completed depth 1
+    Time taken: 0.000126
+Completed depth 2
+    Time taken: 0.001122
+Completed depth 3
+    Time taken: 0.027835
+Completed depth 4
+    Time taken: 0.530055
+Completed depth 5
+    Time taken: 12.7052
+ : OK
+perfttestclass::testPosition2
+Completed depth 0
+    Time taken: 7e-06
+Completed depth 1
+    Time taken: 0.000132
+Completed depth 2
+    Time taken: 0.004516
+Completed depth 3
+    Time taken: 0.216911
+Completed depth 4
+    Time taken: 9.05036
+Completed depth 5
+    Time taken: 417.193
+ : OK
+perfttestclass::testPosition3
+Completed depth 0
+    Time taken: 5e-06
+Completed depth 1
+    Time taken: 4.1e-05
+Completed depth 2
+    Time taken: 0.000416
+Completed depth 3
+    Time taken: 0.005642
+Completed depth 4
+    Time taken: 0.082815
+Completed depth 5
+    Time taken: 1.28705
+ : OK
+perfttestclass::testPosition4
+Completed depth 0
+    Time taken: 5e-06
+Completed depth 1
+    Time taken: 4.2e-05
+Completed depth 2
+    Time taken: 0.00062
+Completed depth 3
+    Time taken: 0.020625
+Completed depth 4
+    Time taken: 0.924268
+Completed depth 5
+    Time taken: 33.6735
+ : OK
+perfttestclass::testPosition5
+Completed depth 0
+    Time taken: 5e-06
+Completed depth 1
+    Time taken: 0.0001
+Completed depth 2
+    Time taken: 0.006104
+Completed depth 3
+    Time taken: 0.14481
+Completed depth 4
+    Time taken: 4.84437
+Completed depth 5
+    Time taken: 189.172
+ : OK
+perfttestclass::testPosition6
+Completed depth 0
+    Time taken: 6e-06
+Completed depth 1
+    Time taken: 0.000118
+Completed depth 2
+    Time taken: 0.004575
+Completed depth 3
+    Time taken: 0.193497
+Completed depth 4
+    Time taken: 8.45886
+Completed depth 5
+    Time taken: 345.728
+ : OK
+OK (6)

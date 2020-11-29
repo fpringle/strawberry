@@ -84,22 +84,22 @@ void movetestclass::testStoi() {
 }
 
 bool test_move(int from, int to, bool prom, bool cap, bool s1, bool s0) {
-    struct move_t _move(from, to, prom, cap, s1, s0);
-    bool is_quiet = !(prom || cap || s1 || s0);
+    move_t _move = make_move(from, to, prom, cap, s1, s0);
+    bool _is_quiet = !(prom || cap || s1 || s0);
     int data = from + (to * (1ULL << 6)) + (cap * (1ULL << 12)) +
             (s0 * (1ULL << 13)) + (s1 * (1ULL << 14)) + (prom * (1ULL << 15));
 
-    if (_move.from_sq() != from) return false;
-    if (_move.to_sq() != to) return false;
-    if (_move.is_quiet() != is_quiet) return false;
-    if (_move.is_promotion() != prom) return false;
-    if (_move.is_capture() != cap) return false;
-    if (_move.is_ep_capture() != (cap && s0)) return false;
-    if (_move.is_doublePP() != (s0 && !(s1 || cap || prom))) return false;
-    if (_move.is_kingCastle() != (s1 && !(s0 || cap || prom))) return false;
-    if (_move.is_queenCastle() != (s1 && s0 && !(cap || prom))) return false;
-    if (_move.is_castle() != (s1 && !(cap || prom))) return false;
-    if (_move.give() != data) return false;
+    if (from_sq(_move) != from) return false;
+    if (to_sq(_move) != to) return false;
+    if (is_quiet(_move) != _is_quiet) return false;
+    if (is_promotion(_move) != prom) return false;
+    if (is_capture(_move) != cap) return false;
+    if (is_ep_capture(_move) != (cap && s0)) return false;
+    if (is_doublePP(_move) != (s0 && !(s1 || cap || prom))) return false;
+    if (is_kingCastle(_move) != (s1 && !(s0 || cap || prom))) return false;
+    if (is_queenCastle(_move) != (s1 && s0 && !(cap || prom))) return false;
+    if (is_castle(_move) != (s1 && !(cap || prom))) return false;
+    if (_move != data) return false;
 
     return true;
 }
@@ -122,12 +122,12 @@ void movetestclass::testMove_t() {
 void movetestclass::testOperatorPrint() {
     std::stringstream ss1, ss2;
 
-    move_t move1(10, 19, false, true, false, false);
-    move_t move2(15, 7, true, false, false, false);
-    move_t move3(4, 6, false, false, true, false);
-    move_t move4(60, 57, false, false, true, true);
-    move_t move5(38, 45, false, true, false, true);
-    move_t move6(50, 34, false, false, false, true);
+    move_t move1 = make_move(10, 19, false, true, false, false);
+    move_t move2 = make_move(15, 7, true, false, false, false);
+    move_t move3 = make_move(4, 6, false, false, true, false);
+    move_t move4 = make_move(60, 57, false, false, true, true);
+    move_t move5 = make_move(38, 45, false, true, false, true);
+    move_t move6 = make_move(50, 34, false, false, false, true);
 
     ss1     << move1 << std::endl
             << move2 << std::endl
@@ -312,11 +312,11 @@ bool testGen(board b) {
     std::vector<uint16_t> cap_vec;
 
     for (i=0; i<num_all; i++) {
-        if (all_moves[i].is_capture()) {
-            all_vec.push_back(all_moves[i].give());
+        if (is_capture(all_moves[i])) {
+            all_vec.push_back(all_moves[i]);
         }
     }
-    for (i=0; i<num_cap; i++) cap_vec.push_back(cap_moves[i].give());
+    for (i=0; i<num_cap; i++) cap_vec.push_back(cap_moves[i]);
 
     if (all_vec.size() != cap_vec.size()) return false;
 

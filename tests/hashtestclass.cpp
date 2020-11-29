@@ -185,9 +185,9 @@ void hashtestclass::dividePos2() {
     init();
     board _board("r3k2r/p1ppqpb1/bn2pnp1/3PN3/1p2P3/2N2Q1p/PPPBBPPP/R3K2R w KQkq - 1 0");
 
-    move_t e5g6(36, 46, 0, 1, 0, 0);
-    move_t h3g2(23, 14, 0, 1, 0, 0);
-    move_t g6h8(46, 63, 0, 1, 0, 0);
+    move_t e5g6 = make_move(36, 46, 0, 1, 0, 0);
+    move_t h3g2 = make_move(23, 14, 0, 1, 0, 0);
+    move_t g6h8 = make_move(46, 63, 0, 1, 0, 0);
 
     //    _board = doMove( _board, e5g6 );
     //    _board = doMove( _board, h3g2 );

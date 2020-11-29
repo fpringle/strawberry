@@ -31,7 +31,6 @@ OBJECTFILES= \
 	${OBJECTDIR}/move.o \
 	${OBJECTDIR}/play.o \
 	${OBJECTDIR}/search.o \
-	${OBJECTDIR}/twiddle.o
 
 TESTDIR=.
 
@@ -111,11 +110,6 @@ ${OBJECTDIR}/play.o: ${SRCDIR}/play.cpp
 	$(COMPILE.cc) -g -I${INCDIR} -MMD -MP -MF "$@.d" -o $@ $^
 
 ${OBJECTDIR}/search.o: ${SRCDIR}/search.cpp
-	${MKDIR} -p ${OBJECTDIR}
-	${RM} "$@.d"
-	$(COMPILE.cc) -g -I${INCDIR} -MMD -MP -MF "$@.d" -o $@ $^
-
-${OBJECTDIR}/twiddle.o: ${SRCDIR}/twiddle.cpp
 	${MKDIR} -p ${OBJECTDIR}
 	${RM} "$@.d"
 	$(COMPILE.cc) -g -I${INCDIR} -MMD -MP -MF "$@.d" -o $@ $^
@@ -242,7 +236,7 @@ ${TESTDIR}/bin/twiddletest: ${TESTOBJECTDIR}/twiddletestclass.o ${TESTOBJECTDIR}
 
 
 # run test targets
-run-tests:
+run: ${TESTFILES}
 	@${TESTDIR}/bin/boardtest || true
 	@${TESTDIR}/bin/checktest || true
 	@${TESTDIR}/bin/evaltest || true
@@ -251,3 +245,13 @@ run-tests:
 	@${TESTDIR}/bin/perfttest || true
 	@${TESTDIR}/bin/searchtest || true
 	@${TESTDIR}/bin/twiddletest || true
+
+# clean up
+clean:
+	${RM} -rf ${TESTOBJECTDIR}
+	${RM} -rf ${TESTDIR}/bin
+
+clobber: clean
+	${RM} -rf ${OBJECTDIR}
+
+.PHONY: clean clobber

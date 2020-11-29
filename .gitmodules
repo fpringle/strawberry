@@ -4,3 +4,6 @@
 [submodule "gui"]
 	path = src/gui
 	url = https://github.com/fpringle/strawberryGUI.git
+[submodule "src/uci"]
+	path = src/uci
+	url = https://github.com/fpringle/strawberryUCI.git

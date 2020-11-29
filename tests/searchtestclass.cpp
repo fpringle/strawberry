@@ -30,9 +30,9 @@ void searchtestclass::setUp() { }
 void searchtestclass::tearDown() { }
 
 int map_move(move_t move) {
-    uint16_t from_square = move.from_sq();
-    uint16_t to_square = move.to_sq();
-    if (!move.is_promotion()) {
+    uint16_t from_square = from_sq(move);
+    uint16_t to_square = to_sq(move);
+    if (!is_promotion(move)) {
         return from_square * 64 + to_square;
     }
     else {
@@ -44,7 +44,7 @@ int map_move(move_t move) {
             _ind += 32 + (to_square % 8) * 4;
         }
 
-        switch (move.which_promotion()) {
+        switch (which_promotion(move)) {
             case queen:
                 _ind += 0;
                 break;

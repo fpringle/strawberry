@@ -272,15 +272,15 @@ void checktestclass::testCheck_lastmove() {
     board pos3("8/2p5/3p4/KP5r/1R2ppk1/8/4P1P1/8 b - - 0 0");
     std::stringstream ss;
 
-    move_t d6d5(43, 35, 0, 0, 0, 0);
-    move_t e2e3(12, 20, 0, 0, 0, 0);
-    move_t c7c5(50, 34, 0, 0, 0, 1);
-    move_t b5c6(33, 42, 0, 1, 0, 1);
-    move_t f4e3(29, 20, 0, 1, 0, 0);
-    move_t c6c7(42, 50, 0, 0, 0, 0);
-    move_t e3e2(20, 12, 0, 0, 0, 0);
-    move_t c7c8(50, 58, 1, 0, 1, 0);
-    move_t e2e1(12, 4, 1, 0, 0, 1);
+    move_t d6d5 = make_move(43, 35, 0, 0, 0, 0);
+    move_t e2e3 = make_move(12, 20, 0, 0, 0, 0);
+    move_t c7c5 = make_move(50, 34, 0, 0, 0, 1);
+    move_t b5c6 = make_move(33, 42, 0, 1, 0, 1);
+    move_t f4e3 = make_move(29, 20, 0, 1, 0, 0);
+    move_t c6c7 = make_move(42, 50, 0, 0, 0, 0);
+    move_t e3e2 = make_move(20, 12, 0, 0, 0, 0);
+    move_t c7c8 = make_move(50, 58, 1, 0, 1, 0);
+    move_t e2e1 = make_move(12, 4, 1, 0, 0, 1);
 
     move_t moves[9] = {d6d5, e2e3, c7c5, b5c6, f4e3,
         c6c7, e3e2, c7c8, e2e1};
@@ -310,7 +310,7 @@ void checktestclass::testCheck_lastmove2() {
     //    _board.print_board();
     std::stringstream ss;
 
-    move_t _castle(4, 2, 0, 0, 1, 1);
+    move_t _castle = make_move(4, 2, 0, 0, 1, 1);
 
     colour side;
 

@@ -7,7 +7,8 @@
 /doc/
 /__pycache__/
 /tests/bin/
-
+/cutechess/
+/stockfish/
 
 *.swp
 *.exe
