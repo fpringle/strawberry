@@ -7,9 +7,11 @@ TEMPLATE = subdirs
 # Directories
 
 SUBDIRS = core \
-          gui
+          gui \
+          uci
 
 core.subdir = src/core
 gui.subdir = src/gui
+uci.subdir = src/uci
 
 gui.depends = core

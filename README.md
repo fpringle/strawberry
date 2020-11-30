@@ -14,3 +14,7 @@ strawberry has several components.
 - an interface for strawberry to communicate via the Universal Chess Interface (UCI) protocol.
 
 
+### Build dependencies
+- [Qt](https://www.qt.io)
+  - all submodules need qmake to generate makefile
+  - strawberryGUI needs Qt core and Qt gui
