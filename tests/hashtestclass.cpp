@@ -81,6 +81,27 @@ void hashtestclass::testInit_keys() {
 
 }
 
+bool perftChildHash(board* b, int depth) {
+    if (depth == 0) return true;
+    MoveList moves = b->gen_legal_moves();
+    uint64_t child_hash;
+    uint64_t real_hash;
+    board* child;
+    for (move_t move : moves) {
+        child_hash = b->childHash(move);
+        child = doMove(b, move);
+        child->getHash(&real_hash);
+        if (real_hash != child_hash) return false;
+        if (! perftChildHash(child, depth - 1)) return false;
+    }
+    return true;
+}
+
+void hashtestclass::testChildHash() {
+    board* pos2("r3k2r/p1ppqpb1/bn2pnp1/3PN3/1p2P3/2N2Q1p/PPPBBPPP/R3K2R w KQkq - 1 0");
+    CPPUNIT_ASSERT(perftChildHash(b, 5));
+}
+
 void _testPERFThash(board _board, int depth, int basedepth) {
     uint64_t _hash;
     _board.getHash(&_hash);

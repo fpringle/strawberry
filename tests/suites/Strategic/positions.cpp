@@ -35,19 +35,22 @@ bool test_position(std::string pos, std::vector<std::string> bms, int timeout) {
     return false;
 }
 
-int run_test_suite(int timeout) {
-    std::cout << "Starting Bratko-Kopec test suite.\n"
+int run_test_theme(int theme, int timeout) {
+    std::cout << "Starting Nolot/" << theme_names[theme] << " test suite.\n"
               << "Using iterative deepening search with timeout: "
               << timeout << " seconds.\n";
 
+    fens = positions[theme];
+    moves = bestmoves[theme;
+
     int num_correct = 0;
-    int num_total = positions.size();
+    int num_total = fens.size();
     std::string pos;
     std::vector<std::string> bms;
 
     for (int i=0; i<num_total; i++) {
-        pos = positions[i];
-        bms = bestmoves[i];
+        pos = fens[i];
+        bms = moves[i];
         std::cout << "  Searching position " << i + 1 << "...\n" << std::flush;
         if (test_position(pos, bms, timeout)) {
             std::cout << "    Position " << i + 1 << " success.\n";
@@ -63,6 +66,23 @@ int run_test_suite(int timeout) {
 
     if (num_total == num_correct) return 0;
     else return 1;
+}
+
+int run_test_suite(int timeout) {
+    int result = 0;
+    int i;
+    for (i=0; i<15; i++) {
+        if (run_test_theme(i, timeout)) {
+            std::cout << "Nolot/" << theme_names[theme]
+                      << " failed.\n\n"
+            result = 1;
+        }
+        else {
+            std::cout << "Nolot/" << theme_names[theme]
+                      << " passed!\n\n"
+        }
+    }
+    return result;
 }
 
 void print_positions() {

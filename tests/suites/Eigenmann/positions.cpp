@@ -37,7 +37,7 @@ bool test_position(std::string pos, std::vector<std::string> bms) {
 
 
 int run_test_suite() {
-    std::cout << "Starting Eigenmann Rapid Engine Test suite.\n"
+    std::cout << "Starting Eigenmann Rapid Engine test suite.\n"
               << "Using iterative deepening search with timeout: "
               << 15 << " seconds.\n";
 

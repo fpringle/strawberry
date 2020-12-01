@@ -1,5 +1,5 @@
-#ifndef __POSITIONS_H
-#define __POSITIONS_H
+#ifndef __BRATKO_KOPEC_POSITIONS_H
+#define __BRATKO_KOPEC_POSITIONS_H
 
 #include <string>
 #include <vector>

@@ -36,7 +36,7 @@ bool test_position(std::string pos, std::vector<std::string> bms, int timeout) {
 }
 
 int run_test_suite(int timeout) {
-    std::cout << "Starting Bratko-Kopec test suite.\n"
+    std::cout << "Starting Win at Chess test suite.\n"
               << "Using iterative deepening search with timeout: "
               << timeout << " seconds.\n";
 

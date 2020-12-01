@@ -18,8 +18,10 @@ class hashtestclass : public CPPUNIT_NS::TestFixture {
 //    CPPUNIT_TEST(testExtract_number);
 //    CPPUNIT_TEST(testInit_keys);
 //
-    CPPUNIT_TEST(incrementalHashStartBoard);
-    CPPUNIT_TEST(incrementalHashPos2);
+    CPPUNIT_TEST(testChildHash);
+//
+//    CPPUNIT_TEST(incrementalHashStartBoard);
+//    CPPUNIT_TEST(incrementalHashPos2);
 //    CPPUNIT_TEST(incrementalHashPos3);
 //    CPPUNIT_TEST(incrementalHashPos4);
 //    CPPUNIT_TEST(incrementalHashPos5);
@@ -39,6 +41,8 @@ private:
     void testInit_gen();
     void testExtract_number();
     void testInit_keys();
+
+    void testChildHash();
 
     void incrementalHashStartBoard();
     void incrementalHashPos2();
