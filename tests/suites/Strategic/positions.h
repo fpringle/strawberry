@@ -4,7 +4,7 @@
 #include <string>
 #include <vector>
 
-const std::vector<std::strig> theme_names = {
+const std::vector<std::string> theme_names = {
         "Undermining",
         "Open Files and Diagonals",
         "Knight Outposts",

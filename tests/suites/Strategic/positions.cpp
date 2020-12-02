@@ -12,7 +12,7 @@
 bool test_position(std::string pos, std::vector<std::string> bms, int timeout) {
     chessCore::board b(pos);
     chessCore::Searcher searcher;
-    chessCore::move_t comp_move = searcher.search(b, timeout, true);
+    chessCore::move_t comp_move = searcher.search(&b, timeout, false);
     std::string comp_move_san = b.SAN_pre_move(comp_move);
 
 //    chessCore::Player player(pos);
@@ -28,7 +28,7 @@ bool test_position(std::string pos, std::vector<std::string> bms, int timeout) {
     }
     else {
         std::cout << "                best moves: " << bms[0] << std::endl;
-        for (int i=1; i<bms.size(); i++) {
+        for (unsigned int i=1; i<bms.size(); i++) {
             std::cout << "                            " << bms[i] << std::endl;
         }
     }
@@ -40,8 +40,8 @@ int run_test_theme(int theme, int timeout) {
               << "Using iterative deepening search with timeout: "
               << timeout << " seconds.\n";
 
-    fens = positions[theme];
-    moves = bestmoves[theme;
+    std::vector<std::string> fens = positions[theme];
+    std::vector<std::vector<std::string>> moves = bestmoves[theme];
 
     int num_correct = 0;
     int num_total = fens.size();
@@ -70,28 +70,20 @@ int run_test_theme(int theme, int timeout) {
 
 int run_test_suite(int timeout) {
     int result = 0;
-    int i;
-    for (i=0; i<15; i++) {
-        if (run_test_theme(i, timeout)) {
+    int theme;
+    for (theme=0; theme<15; theme++) {
+        if (run_test_theme(theme, timeout)) {
             std::cout << "Nolot/" << theme_names[theme]
-                      << " failed.\n\n"
+                      << " failed.\n\n";
             result = 1;
         }
         else {
             std::cout << "Nolot/" << theme_names[theme]
-                      << " passed!\n\n"
+                      << " passed!\n\n";
         }
     }
     return result;
 }
-
-void print_positions() {
-    for (std::string pos : positions) {
-        chessCore::board b(pos);
-        std::cout << b;
-    }
-}
-
 
 int main(int argc, char* argv[]) {
     chessCore::init();

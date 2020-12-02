@@ -10,25 +10,25 @@
 #include "init.h"
 
 bool test_position(std::string pos, std::vector<std::string> bms, int timeout) {
-    chessCore::board b(pos);
+    chessCore::board* b = new chessCore::board(pos);
     chessCore::Searcher searcher;
-    chessCore::move_t comp_move = searcher.search(b, timeout, true);
-    std::string comp_move_san = b.SAN_pre_move(comp_move);
-
+    b->print_board();
+    chessCore::move_t comp_move = searcher.search(b, timeout, false);
+    std::string comp_move_san = b->SAN_pre_move(comp_move);
+    delete b;
 //    chessCore::Player player(pos);
 //    chessCore::move_t comp_move = player.iterative_deepening(timeout);
 
 //    std::string comp_move_san = player.SAN_pre_move(comp_move);
 
     if (std::find(bms.begin(), bms.end(), comp_move_san) != bms.end()) return true;
-    std::cout << b;
     std::cout << "    Error: calculated move: " << comp_move_san << std::endl;
     if (bms.size()==1) {
         std::cout << "                 best move: " << bms[0] << std::endl;
     }
     else {
         std::cout << "                best moves: " << bms[0] << std::endl;
-        for (int i=1; i<bms.size(); i++) {
+        for (unsigned int i=1; i<bms.size(); i++) {
             std::cout << "                            " << bms[i] << std::endl;
         }
     }

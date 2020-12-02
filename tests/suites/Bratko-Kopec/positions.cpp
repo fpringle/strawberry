@@ -12,7 +12,7 @@
 bool test_position(std::string pos, std::vector<std::string> bms, int timeout) {
     chessCore::board b(pos);
     chessCore::Searcher searcher;
-    chessCore::move_t comp_move = searcher.search(b, timeout, true);
+    chessCore::move_t comp_move = searcher.search(&b, timeout, false);
     std::string comp_move_san = b.SAN_pre_move(comp_move);
 
 //    chessCore::Player player(pos);
@@ -28,7 +28,7 @@ bool test_position(std::string pos, std::vector<std::string> bms, int timeout) {
     }
     else {
         std::cout << "                best moves: " << bms[0] << std::endl;
-        for (int i=1; i<bms.size(); i++) {
+        for (unsigned int i=1; i<bms.size(); i++) {
             std::cout << "                            " << bms[i] << std::endl;
         }
     }
