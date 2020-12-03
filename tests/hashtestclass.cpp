@@ -98,8 +98,14 @@ bool perftChildHash(board* b, int depth) {
 }
 
 void hashtestclass::testChildHash() {
-    board* pos2("r3k2r/p1ppqpb1/bn2pnp1/3PN3/1p2P3/2N2Q1p/PPPBBPPP/R3K2R w KQkq - 1 0");
-    CPPUNIT_ASSERT(perftChildHash(b, 5));
+    board* pos2 = new board("r3k2r/p1ppqpb1/bn2pnp1/3PN3/1p2P3/2N2Q1p/PPPBBPPP/R3K2R w KQkq - 1 0");
+    CPPUNIT_ASSERT(perftChildHash(pos2, 5));
+
+    board* pos3 = new board("8/2p5/3p4/KP5r/1R3p1k/8/4P1P1/8 w - - 0 1");
+    CPPUNIT_ASSERT(perftChildHash(pos3, 5));
+
+    board* pos4 = new board("r3k2r/Pppp1ppp/1b3nbN/nP6/BBP1P3/q4N2/Pp1P2PP/R2Q1RK1 w kq - 0 1");
+    CPPUNIT_ASSERT(perftChildHash(pos4, 5));
 }
 
 void _testPERFThash(board _board, int depth, int basedepth) {
@@ -107,12 +113,11 @@ void _testPERFThash(board _board, int depth, int basedepth) {
     _board.getHash(&_hash);
     CPPUNIT_ASSERT(_board.zobrist_hash() == _hash);
     if (depth == 0) return;
-    move_t moves[256];
-    int n_moves = _board.gen_legal_moves(moves);
+    MoveList moves = _board.gen_legal_moves();
     board child;
 
-    for (int i = 0; i < n_moves; i++) {
-        child = doMove(_board, moves[i]);
+    for (move_t move : moves) {
+        child = doMove(_board, move);
         _testPERFThash(child, depth - 1, basedepth);
     }
 }
@@ -177,12 +182,11 @@ bool perftHash(board b, int depth) {
     if (_hsh != b.zobrist_hash()) return false;
     if (depth == 0) return true;
 
-    move_t moves[256];
-    int n_moves = b.gen_legal_moves(moves);
+    MoveList moves = b.gen_legal_moves();
     board child;
 
-    for (int i = 0; i < n_moves; i++) {
-        child = doMove(b, moves[i]);
+    for (move_t move : moves) {
+        child = doMove(b, move);
         if (!perftHash(child, depth - 1)) return false;
     }
 
@@ -190,13 +194,12 @@ bool perftHash(board b, int depth) {
 }
 
 void divideHash(board b, int depth) {
-    move_t moves[256];
-    int n_moves = b.gen_legal_moves(moves);
+    MoveList moves = b.gen_legal_moves();
     board child;
 
-    for (int i = 0; i < n_moves; i++) {
-        child = doMove(b, moves[i]);
-        std::cout << moves[i];
+    for (move_t move : moves) {
+        child = doMove(b, move);
+        std::cout << move;
         if (perftHash(child, depth - 1)) std::cout << "   success\n";
         else std::cout << "   fail\n";
     }

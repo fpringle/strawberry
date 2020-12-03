@@ -293,37 +293,23 @@ void movetestclass::testBishopTargets() {
 }
 
 bool testGen(board b) {
-    move_t all_moves[256];
-    move_t cap_moves[256];
-    int num_all = b.gen_legal_moves(all_moves);
-    int num_cap = b.gen_captures(cap_moves);
+    MoveList all_moves = b.gen_legal_moves();
+    MoveList cap_moves = b.gen_captures();
     int j=0, i;
 
-/*
-    for (i=0; i<num_all; i++) std::cout << all_moves[i] << std::endl;
-    std::cout << "\n";
-    for (i=0; i<num_cap; i++) {
-        std::cout << cap_moves[i]
-                  << " " << b.is_legal(cap_moves[i]) << std::endl;
-    }
-*/
+    MoveList all_vec;
 
-    std::vector<uint16_t> all_vec;
-    std::vector<uint16_t> cap_vec;
-
-    for (i=0; i<num_all; i++) {
-        if (is_capture(all_moves[i])) {
-            all_vec.push_back(all_moves[i]);
+    for (move_t move : all_moves) {
+        if (is_capture(move)) {
+            all_vec.push_back(move);
         }
     }
-    for (i=0; i<num_cap; i++) cap_vec.push_back(cap_moves[i]);
-
-    if (all_vec.size() != cap_vec.size()) return false;
+    if (all_vec.size() != cap_moves.size()) return false;
 
     std::sort(all_vec.begin(), all_vec.end());
-    std::sort(cap_vec.begin(), cap_vec.end());
+    std::sort(cap_moves.begin(), cap_moves.end());
 
-    return all_vec == cap_vec;
+    return all_vec == cap_moves;
 }
 
 bool testGenPerft(board b, int depth) {
@@ -333,12 +319,10 @@ bool testGenPerft(board b, int depth) {
     }
     if (depth == 0) return true;
     board child;
-    move_t moves[256];
-    int num_moves = b.gen_legal_moves(moves);
-    for (int i=0; i<num_moves; i++) {
-        child = doMove(b, moves[i]);
+    MoveList moves = b.gen_legal_moves();
+    for (move_t move : moves) {
+        child = doMove(b, move);
         if (! testGenPerft(child, depth-1)) {
-            //std::cout << b << moves[i] << std::endl;
             return false;
         }
     }
@@ -378,17 +362,16 @@ bool perftSAN(board b, int depth) {
     if (depth == 0) return true;
 
     std::string san_pre, san_post;
-    move_t moves[256];
-    int num_moves = b.gen_legal_moves(moves);
+    MoveList moves = b.gen_legal_moves();
     board child;
 
-    for (int i=0; i<num_moves; i++) {
-        san_pre = b.SAN_pre_move(moves[i]);
+    for (move_t move : moves) {
+        san_pre = b.SAN_pre_move(move);
         child = b;
-        child.doMoveInPlace(moves[i]);
-        san_post = child.SAN_post_move(moves[i]);
+        child.doMoveInPlace(move);
+        san_post = child.SAN_post_move(move);
         if (san_pre != san_post) {
-            std::cout << b << moves[i] << std::endl
+            std::cout << b << move << std::endl
                       << "pre:  " << san_pre << std::endl
                       << "post: " << san_post << std::endl;
             return false;
@@ -420,4 +403,41 @@ void movetestclass::testSANoutput() {
     std::cout << "Successful b5\n";
     CPPUNIT_ASSERT(perftSAN(b6, 5));
     std::cout << "Successful b6\n";
+}
+
+void testOneSANinput(board* b, move_t move) {
+    std::string san = b->SAN_pre_move(move);
+    move_t calcmove = b->move_from_SAN(san);
+    std::string errormsg = "Correct move: " + mtos(move) +
+                           ", calculated move: " + mtos(calcmove) +
+                           ", correct SAN: " + san + '\n';
+    std::stringstream ss;
+    b->print_board(ss);
+    errormsg += ss.str();
+    CPPUNIT_ASSERT_EQUAL_MESSAGE(errormsg, move, calcmove);
+}
+
+void testSANperft(board* b, int depth) {
+    if (depth == 0) return;
+    board* child;
+    MoveList moves  = b->gen_legal_moves();
+    for (move_t move : moves) {
+        testOneSANinput(b, move);
+        child = doMove(b, move);
+        testSANperft(child, depth - 1);
+    }
+}
+
+void movetestclass::testSANinput() {
+    board* pos2 = new board("r3k2r/p1ppqpb1/bn2pnp1/3PN3/1p2P3/2N2Q1p/PPPBBPPP/R3K2R w KQkq - 1 0");
+    testSANperft(pos2, 4);
+
+    board* pos3 = new board("8/2p5/3p4/KP5r/1R3p1k/8/4P1P1/8 w - - 0 1");
+    testSANperft(pos3, 3);
+
+    board* pos4 = new board("r3k2r/Pppp1ppp/1b3nbN/nP6/BBP1P3/q4N2/Pp1P2PP/R2Q1RK1 w kq - 0 1");
+    testSANperft(pos4, 4);
+
+    board* pos5 = new board("rnbq1k1r/pp1Pbppp/2p5/8/2B5/8/PPP1NnPP/RNBQK2R w KQ - 1 8");
+    testSANperft(pos5, 4);
 }

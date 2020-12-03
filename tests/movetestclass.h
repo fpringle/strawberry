@@ -15,29 +15,30 @@ class movetestclass : public CPPUNIT_NS::TestFixture {
     CPPUNIT_TEST_SUITE(movetestclass);
 
 
-    CPPUNIT_TEST(testItos);
-    CPPUNIT_TEST(testStoi);
+//    CPPUNIT_TEST(testItos);
+//    CPPUNIT_TEST(testStoi);
 
-    CPPUNIT_TEST(testMove_t);
+//    CPPUNIT_TEST(testMove_t);
 
-    CPPUNIT_TEST(testOperatorPrint);
+//    CPPUNIT_TEST(testOperatorPrint);
 
-    CPPUNIT_TEST(testInit_rays);
+//    CPPUNIT_TEST(testInit_rays);
 
-    CPPUNIT_TEST(testPawnPushNaive);
-    CPPUNIT_TEST(testPawnAttackNaive);
-    CPPUNIT_TEST(testPawnAttacks);
-    CPPUNIT_TEST(testPawnTargets);
+//    CPPUNIT_TEST(testPawnPushNaive);
+//    CPPUNIT_TEST(testPawnAttackNaive);
+//    CPPUNIT_TEST(testPawnAttacks);
+//    CPPUNIT_TEST(testPawnTargets);
 
-    CPPUNIT_TEST(testKnightPushNaive);
-    CPPUNIT_TEST(testKnightTargets);
+//    CPPUNIT_TEST(testKnightPushNaive);
+//    CPPUNIT_TEST(testKnightTargets);
 
-    CPPUNIT_TEST(testKingPushNaive);
-    CPPUNIT_TEST(testKingTargets);
+//    CPPUNIT_TEST(testKingPushNaive);
+//    CPPUNIT_TEST(testKingTargets);
 
 //    CPPUNIT_TEST(testGenCaptures);
 
-    CPPUNIT_TEST(testSANoutput);
+//    CPPUNIT_TEST(testSANoutput);
+    CPPUNIT_TEST(testSANinput);
 
     CPPUNIT_TEST_SUITE_END();
 
@@ -80,6 +81,7 @@ private:
     void testGenCaptures();
 
     void testSANoutput();
+    void testSANinput();
 };
 
 #endif /* MOVETESTCLASS_H */
