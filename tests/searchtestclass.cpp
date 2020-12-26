@@ -98,14 +98,13 @@ void search_tree(board b, uint64_t ** dest, int32_t ** score, int depth, uint64_
 
     else {
         moves_so_far *= 4160;
-        move_t moves[256];
         board child;
-        int n_moves = b.gen_legal_moves(moves);
+        MoveList moves = b.gen_legal_moves();
         uint64_t new_moveset;
 
-        for (int i = 0; i < n_moves; i++) {
-            child = doMove(b, moves[i]);
-            new_moveset = moves_so_far + map_move(moves[i]);
+        for (move_t move : moves) {
+            child = doMove(b, move);
+            new_moveset = moves_so_far + map_move(move);
             search_tree(child, dest, score, depth - 1, new_moveset);
         }
     }

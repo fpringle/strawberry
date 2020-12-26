@@ -267,60 +267,92 @@ void checktestclass::testIs_checkmate() {
 
 }
 
-void checktestclass::testCheck_lastmove() {
-    init_rays();
-    board pos3("8/2p5/3p4/KP5r/1R2ppk1/8/4P1P1/8 b - - 0 0");
-    std::stringstream ss;
-
-    move_t d6d5 = make_move(43, 35, 0, 0, 0, 0);
-    move_t e2e3 = make_move(12, 20, 0, 0, 0, 0);
-    move_t c7c5 = make_move(50, 34, 0, 0, 0, 1);
-    move_t b5c6 = make_move(33, 42, 0, 1, 0, 1);
-    move_t f4e3 = make_move(29, 20, 0, 1, 0, 0);
-    move_t c6c7 = make_move(42, 50, 0, 0, 0, 0);
-    move_t e3e2 = make_move(20, 12, 0, 0, 0, 0);
-    move_t c7c8 = make_move(50, 58, 1, 0, 1, 0);
-    move_t e2e1 = make_move(12, 4, 1, 0, 0, 1);
-
-    move_t moves[9] = {d6d5, e2e3, c7c5, b5c6, f4e3,
-        c6c7, e3e2, c7c8, e2e1};
-
+bool perft_lastmove_check(board* b, int depth) {
+    if (depth == 0) return true;
+    MoveList moves = b->gen_legal_moves();
+    board* child;
     colour side;
-
-    for (int i = 0; i < 9; i++) {
-        pos3 = doMove(pos3, moves[i]);
-        pos3.getSide(&side);
-        //        pos3.print_board();
-        if (pos3.is_check(side) & (!pos3.was_lastmove_check(moves[i]))) {
-            ss << "False negative at move " << i;
-            CPPUNIT_FAIL(ss.str());
-            ss.str("");
+    bool lastmove_check, in_check;
+    for (move_t move : moves) {
+        child = doMove(b, move);
+        child->getSide(&side);
+        lastmove_check = child->was_lastmove_check(move);
+        in_check = child->is_check(side);
+        if (lastmove_check ^ in_check) {
+            std::cout << *b << b->FEN() << std::endl << *child
+                      << b->SAN_pre_move(move) << std::endl;
+            std::cout << "Check: " << (in_check ? "true\n" : "false\n");
+            std::cout << "Was lastmove check: " << (lastmove_check ? "true\n" : "false\n");
+            return false;
         }
-        else if ((!pos3.is_check(side)) & pos3.was_lastmove_check(moves[i])) {
-            ss << "False positive at move " << i;
-            CPPUNIT_FAIL(ss.str());
-            ss.str("");
-        }
+        if (! perft_lastmove_check(child, depth-1)) return false;
     }
+    return true;
 }
 
-void checktestclass::testCheck_lastmove2() {
+void test_lastmove_check(board* b, int depth) {
+    CPPUNIT_ASSERT(perft_lastmove_check(b,depth));
+}
+
+void checktestclass::testCheck_lastmove_pos3() {
     init_rays();
-    board _board("3k4/8/8/8/8/8/8/R3K3 w KQkq - 0 0");
-    //    _board.print_board();
-    std::stringstream ss;
+    board* pos3 = new board("8/2p5/3p4/KP5r/1R2ppk1/8/4P1P1/8 b - - 0 0");
+    test_lastmove_check(pos3, 5);
+}
 
-    move_t _castle = make_move(4, 2, 0, 0, 1, 1);
+void checktestclass::testCheck_lastmove_pos4() {
+    init_rays();
+    board* pos4 = new board("r3k2r/Pppp1ppp/1b3nbN/nP6/BBP1P3/q4N2/Pp1P2PP/R2Q1RK1 w kq - 0 1");
+    test_lastmove_check(pos4, 5);
+}
 
+void checktestclass::testCheck_lastmove_pos5() {
+    init_rays();
+    board* pos5 = new board("rnbq1k1r/pp1Pbppp/2p5/8/2B5/8/PPP1NnPP/RNBQK2R w KQ - 1 8");
+    test_lastmove_check(pos5, 5);
+}
+
+bool perft_checking_move(board* b, int depth) {
+    if (depth == 0) return true;
+    MoveList moves = b->gen_legal_moves();
+    board* child;
     colour side;
+    bool checking, in_check;
+    for (move_t move : moves) {
+        child = doMove(b, move);
+        child->getSide(&side);
+        checking = b->is_checking_move(move);
+        in_check = child->is_check(side);
+        if (checking ^ in_check) {
+            std::cout << *b << b->FEN() << std::endl << *child
+                      << b->SAN_pre_move(move) << std::endl;
+            std::cout << "Check: " << (in_check ? "true\n" : "false\n");
+            std::cout << "Is checking move: " << (checking ? "true\n" : "false\n");
+            return false;
+        }
+        if (! perft_lastmove_check(child, depth-1)) return false;
+    }
+    return true;
+}
 
-    _board = doMove(_board, _castle);
-    _board.getSide(&side);
-    //    _board.print_board();
-    if (_board.is_check(side) & (!_board.was_lastmove_check(_castle))) {
-        CPPUNIT_FAIL("False negative");
-    }
-    else if ((!_board.is_check(side)) & _board.was_lastmove_check(_castle)) {
-        CPPUNIT_FAIL("False positive");
-    }
+void test_checking_move(board* b, int depth) {
+    CPPUNIT_ASSERT(perft_checking_move(b,depth));
+}
+
+void checktestclass::testChecking_move_pos3() {
+    init_rays();
+    board* pos3 = new board("8/2p5/3p4/KP5r/1R2ppk1/8/4P1P1/8 b - - 0 0");
+    test_checking_move(pos3, 5);
+}
+
+void checktestclass::testChecking_move_pos4() {
+    init_rays();
+    board* pos4 = new board("r3k2r/Pppp1ppp/1b3nbN/nP6/BBP1P3/q4N2/Pp1P2PP/R2Q1RK1 w kq - 0 1");
+    test_checking_move(pos4, 5);
+}
+
+void checktestclass::testChecking_move_pos5() {
+    init_rays();
+    board* pos5 = new board("rnbq1k1r/pp1Pbppp/2p5/8/2B5/8/PPP1NnPP/RNBQK2R w KQ - 1 8");
+    test_checking_move(pos5, 5);
 }

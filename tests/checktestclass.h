@@ -1,4 +1,5 @@
 
+
 /*
  * File:   checktestclass.h
  * Author: freddy
@@ -14,10 +15,15 @@
 class checktestclass : public CPPUNIT_NS::TestFixture {
     CPPUNIT_TEST_SUITE(checktestclass);
 
-    CPPUNIT_TEST(testIs_check);
-    CPPUNIT_TEST(testIs_checkmate);
-    CPPUNIT_TEST(testCheck_lastmove);
-    CPPUNIT_TEST(testCheck_lastmove2);
+//    CPPUNIT_TEST(testIs_check);
+//    CPPUNIT_TEST(testIs_checkmate);
+//    CPPUNIT_TEST(testCheck_lastmove_pos3);
+//    CPPUNIT_TEST(testCheck_lastmove_pos4);
+//    CPPUNIT_TEST(testCheck_lastmove_pos5);
+
+    CPPUNIT_TEST(testChecking_move_pos3);
+//    CPPUNIT_TEST(testChecking_move_pos4);
+    CPPUNIT_TEST(testChecking_move_pos5);
 
     CPPUNIT_TEST_SUITE_END();
 
@@ -30,8 +36,12 @@ public:
 private:
     void testIs_check();
     void testIs_checkmate();
-    void testCheck_lastmove();
-    void testCheck_lastmove2();
+    void testCheck_lastmove_pos3();
+    void testCheck_lastmove_pos4();
+    void testCheck_lastmove_pos5();
+    void testChecking_move_pos3();
+    void testChecking_move_pos4();
+    void testChecking_move_pos5();
 
 };
 

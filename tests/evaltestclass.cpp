@@ -37,12 +37,11 @@ void _testPERFTeval(board _board, int depth, int basedepth) {
     CPPUNIT_ASSERT_MESSAGE(ss.str(), _board.getValue() == _board.evaluate());
 
     if (depth == 0) return;
-    move_t moves[256];
-    int n_moves = _board.gen_legal_moves(moves);
+    MoveList moves = _board.gen_legal_moves();
     board child;
 
-    for (int i = 0; i < n_moves; i++) {
-        child = doMove(_board, moves[i]);
+    for (move_t move : moves) {
+        child = doMove(_board, move);
         _testPERFTeval(child, depth - 1, basedepth);
     }
 }

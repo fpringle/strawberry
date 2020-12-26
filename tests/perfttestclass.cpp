@@ -37,8 +37,6 @@ void perfttestclass::setUp() { }
 void perfttestclass::tearDown() { }
 
 unsigned int PERFT_pseud(board b, int depth, bool print_progress = false) {
-    move_t movelist[256];
-    int n_moves, i;
     unsigned int ret = 0;
     board child;
     colour side;
@@ -48,36 +46,31 @@ unsigned int PERFT_pseud(board b, int depth, bool print_progress = false) {
         return 1;
     }
 
-    n_moves = b.gen_moves(movelist);
-    for (i = 0; i < n_moves; i++) {
-        child = doMove(b, movelist[i]);
+    MoveList moves = b.gen_moves();
+    for (move_t move : moves) {
+        child = doMove(b, move);
         if (child.is_check(side)) continue;
         ret += PERFT_pseud(child, depth - 1, false);
-        if (print_progress) std::cout << "pseud completed: " << i + 1 << " / " << n_moves << std::endl;
     }
     return ret;
 }
 
 unsigned int PERFT_legalcheck_faster(board b, int depth, bool print_progress = false) {
     if (depth == 0) return 1;
-    move_t movelist[256];
-    int n_moves;
-    int i;
     unsigned int ret = 0;
     board child;
     colour side;
     b.getSide(&side);
 
-    n_moves = b.gen_legal_moves(movelist);
+    MoveList moves = b.gen_legal_moves();
 
     if (depth == 1) {
-        return n_moves;
+        return moves.size();
     }
 
-    for (i = 0; i < n_moves; i++) {
-        child = doMove(b, movelist[i]);
+    for (move_t move : moves) {
+        child = doMove(b, move);
         ret += PERFT_legalcheck_faster(child, depth - 1, false);
-        if (print_progress) std::cout << "legal completed: " << i + 1 << " / " << n_moves << std::endl;
     }
     return ret;
 }
@@ -165,40 +158,35 @@ void divide_pseud(board _board, int depth, unsigned int * cache) {
     bool print_progress = false;
     bool _print_moves = 0;
     bool _print_total = 0;
-    move_t moves[256];
-    int num_moves = _board.gen_moves(moves);
+    MoveList moves = _board.gen_moves();
     int num_children;
     board _child;
     int total = 0;
     colour side;
     _board.getSide(&side);
     int num_perft;
-    prettyMove pm;
 
-    for (int i = 0; i < num_moves; i++) {
-        _child = doMove(_board, moves[i]);
+    for (move_t move : moves) {
+        _child = doMove(_board, move);
         if (_child.is_check(side)) {
             continue;
         }
         num_perft = PERFT_pseud(_child, depth - 1, print_progress);
         if (_print_moves) {
-            pm.data = moves[i];
-            std::cout << pm;
-            std::cout << ": " << num_perft << std::endl;
+            std::cout << mtos(move) << ": " << num_perft << std::endl;
         }
-        if (!is_promotion(moves[i])) {
-            cache[ from_sq(moves[i])*64 + to_sq(moves[i]) ] = num_perft;
+        if (!is_promotion(move)) {
+            cache[ from_sq(move)*64 + to_sq(move) ] = num_perft;
         }
         else {
             int _ind = 4096;
-            +to_sq(moves[i])*4;
-            if (to_sq(moves[i]) / 8 == 0) {
-                _ind += to_sq(moves[i])*4;
+            if (to_sq(move) / 8 == 0) {
+                _ind += to_sq(move)*4;
             }
             else {
-                _ind += 32 + (to_sq(moves[i]) % 8)*4;
+                _ind += 32 + (to_sq(move) % 8)*4;
             }
-            switch (which_promotion(moves[i])) {
+            switch (which_promotion(move)) {
                 case queen:
                     _ind += 0;
                     break;
@@ -228,8 +216,7 @@ bool divide_legal(board _board, int depth, unsigned int * cache) {
     bool print_progress = false;
     bool _print_moves = 0;
     bool _print_total = 0;
-    move_t moves[256];
-    int num_legal = _board.gen_legal_moves(moves);
+    MoveList moves = _board.gen_legal_moves();
     //    int num_moves = _board.gen_moves( moves );
     //    if ( num_moves != num_legal ) return false;
     //    else {
@@ -243,26 +230,26 @@ bool divide_legal(board _board, int depth, unsigned int * cache) {
     _board.getSide(&side);
     int num_perft;
 
-    for (int i = 0; i < num_legal; i++) {
-        _child = doMove(_board, moves[i]);
+    for (move_t move : moves) {
+        _child = doMove(_board, move);
         num_perft = PERFT_legalcheck_faster(_child, depth - 1, print_progress);
         if (_print_moves) {
-            std::cout << moves[i];
+            std::cout << move;
             std::cout << ": " << num_perft << std::endl;
         }
-        if (!is_promotion(moves[i])) {
-            cache[ from_sq(moves[i])*64 + to_sq(moves[i]) ] = num_perft;
+        if (!is_promotion(move)) {
+            cache[ from_sq(move)*64 + to_sq(move) ] = num_perft;
         }
         else {
             //            std::cout << "                     adding a promotion";
             int _ind = 4096; // + to_sq(moves[i])*4;
-            if (to_sq(moves[i]) / 8 == 0) {
-                _ind += to_sq(moves[i])*4;
+            if (to_sq(move) / 8 == 0) {
+                _ind += to_sq(move)*4;
             }
             else {
-                _ind += 32 + (to_sq(moves[i]) % 8)*4;
+                _ind += 32 + (to_sq(move) % 8)*4;
             }
-            switch (which_promotion(moves[i])) {
+            switch (which_promotion(move)) {
                 case queen:
                     _ind += 0;
                     break;
@@ -338,14 +325,13 @@ void perfttestclass::divideStartboard() {
     }
 
     else {
-        move_t pseud[256];
-        move_t legal[256];
-        int n_pseud = b.gen_moves(pseud);
-        int n_legal = b.gen_legal_moves(legal);
-        std::cout << "real num: " << n_pseud << ", our num: " << n_legal << std::endl;
+        MoveList pseud = b.gen_moves();
+        MoveList legal = b.gen_legal_moves();
+        std::cout << "real num: " << pseud.size()
+                  << ", our num: " << legal.size() << std::endl;
         int i;
 
-        for (i = 0; i < std::max(n_pseud, n_legal); i++) {
+        for (i = 0; i < std::max(pseud.size(), legal.size()); i++) {
             std::cout << pseud[i];
             std::cout << "   ";
             std::cout << legal[i];
@@ -406,14 +392,13 @@ void perfttestclass::dividePos2() {
     }
 
     else {
-        move_t pseud[256];
-        move_t legal[256];
-        int n_pseud = b.gen_moves(pseud);
-        int n_legal = b.gen_legal_moves(legal);
-        std::cout << "real num: " << n_pseud << ", our num: " << n_legal << std::endl;
+        MoveList pseud = b.gen_moves();
+        MoveList legal = b.gen_legal_moves();
+        std::cout << "real num: " << pseud.size()
+                  << ", our num: " << legal.size() << std::endl;
         int i;
 
-        for (i = 0; i < std::max(n_pseud, n_legal); i++) {
+        for (i = 0; i < std::max(pseud.size(), legal.size()); i++) {
             std::cout << pseud[i];
             std::cout << "   ";
             std::cout << legal[i];
@@ -487,14 +472,13 @@ void perfttestclass::dividePos3() {
     }
 
     else {
-        move_t pseud[256];
-        move_t legal[256];
-        int n_pseud = b.gen_moves(pseud);
-        int n_legal = b.gen_legal_moves(legal);
-        std::cout << "real num: " << n_pseud << ", our num: " << n_legal << std::endl;
+        MoveList pseud = b.gen_moves();
+        MoveList legal = b.gen_legal_moves();
+        std::cout << "real num: " << pseud.size()
+                  << ", our num: " << legal.size() << std::endl;
         int i;
 
-        for (i = 0; i < std::max(n_pseud, n_legal); i++) {
+        for (i = 0; i < std::max(pseud.size(), legal.size()); i++) {
             std::cout << pseud[i];
             std::cout << "   ";
             std::cout << legal[i];
@@ -555,14 +539,13 @@ void perfttestclass::dividePos4() {
     }
 
     else {
-        move_t pseud[256];
-        move_t legal[256];
-        int n_pseud = b.gen_moves(pseud);
-        int n_legal = b.gen_legal_moves(legal);
-        std::cout << "real num: " << n_pseud << ", our num: " << n_legal << std::endl;
+        MoveList pseud = b.gen_moves();
+        MoveList legal = b.gen_legal_moves();
+        std::cout << "real num: " << pseud.size()
+                  << ", our num: " << legal.size() << std::endl;
         int i;
 
-        for (i = 0; i < std::max(n_pseud, n_legal); i++) {
+        for (i = 0; i < std::max(pseud.size(), legal.size()); i++) {
             std::cout << pseud[i];
             std::cout << "   ";
             std::cout << legal[i];
@@ -575,29 +558,27 @@ void perfttestclass::pos3b4b1f4f3e2e3f3g2b1h1() {
     init_rays();
     board b("8/2p5/3p4/KP5r/7k/4P3/6p1/7R b - - 1 1");
     b.print_board();
-    move_t pseud_moves[256];
-    move_t legal_moves[256];
-    int num_pseud = b.gen_moves(pseud_moves);
+    MoveList pseud_moves = b.gen_moves();
     int _num_pseud = 0;
-    int num_legal = b.gen_legal_moves(legal_moves);
+    MoveList legal_moves = b.gen_legal_moves();
     board child;
 
     std::cout << "pseud:\n";
-    for (int i = 0; i < num_pseud; i++) {
-        child = doMove(b, pseud_moves[i]);
+    for (move_t move : pseud_moves) {
+        child = doMove(b, move);
         if (child.is_check(black)) continue;
         std::cout << "  ";
-        std::cout << pseud_moves[i];
+        std::cout << move;
         std::cout << std::endl;
         _num_pseud++;
     }
     std::cout << "    Total: " << _num_pseud;
 
     std::cout << "\n\nlegal:\n";
-    for (int i = 0; i < num_legal; i++) {
+    for (move_t move : legal_moves) {
         std::cout << "  ";
-        std::cout << legal_moves[i];
+        std::cout << move;
         std::cout << std::endl;
     }
-    std::cout << "    Total: " << num_legal;
+    std::cout << "    Total: " << legal_moves.size();
 }
