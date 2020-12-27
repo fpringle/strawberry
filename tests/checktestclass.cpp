@@ -356,3 +356,9 @@ void checktestclass::testChecking_move_pos5() {
     board* pos5 = new board("rnbq1k1r/pp1Pbppp/2p5/8/2B5/8/PPP1NnPP/RNBQK2R w KQ - 1 8");
     test_checking_move(pos5, 5);
 }
+
+void checktestclass::testChecking_move_temp() {
+    init_rays();
+    board* pos = new board("2kr3r/p2pqpb1/bn2pnp1/2pPN3/1p2P3/P1N2Q1p/1PPBBPPP/2R1K2R w K c6 0 2");
+    test_checking_move(pos, 2);
+}

@@ -371,7 +371,7 @@ bool perftSAN(board b, int depth) {
         child.doMoveInPlace(move);
         san_post = child.SAN_post_move(move);
         if (san_pre != san_post) {
-            std::cout << b << move << std::endl
+            std::cout << b << b.FEN() << std::endl
                       << "pre:  " << san_pre << std::endl
                       << "post: " << san_post << std::endl;
             return false;

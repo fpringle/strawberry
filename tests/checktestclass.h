@@ -21,9 +21,10 @@ class checktestclass : public CPPUNIT_NS::TestFixture {
 //    CPPUNIT_TEST(testCheck_lastmove_pos4);
 //    CPPUNIT_TEST(testCheck_lastmove_pos5);
 
-    CPPUNIT_TEST(testChecking_move_pos3);
+//    CPPUNIT_TEST(testChecking_move_pos3);
 //    CPPUNIT_TEST(testChecking_move_pos4);
-    CPPUNIT_TEST(testChecking_move_pos5);
+//    CPPUNIT_TEST(testChecking_move_pos5);
+    CPPUNIT_TEST(testChecking_move_temp);
 
     CPPUNIT_TEST_SUITE_END();
 
@@ -42,6 +43,7 @@ private:
     void testChecking_move_pos3();
     void testChecking_move_pos4();
     void testChecking_move_pos5();
+    void testChecking_move_temp();
 
 };
 
