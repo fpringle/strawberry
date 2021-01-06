@@ -37,8 +37,8 @@ class movetestclass : public CPPUNIT_NS::TestFixture {
 
 //    CPPUNIT_TEST(testGenCaptures);
 
-    CPPUNIT_TEST(testSANoutput);
-//    CPPUNIT_TEST(testSANinput);
+//    CPPUNIT_TEST(testSANoutput);
+    CPPUNIT_TEST(testSANinput);
 
     CPPUNIT_TEST_SUITE_END();
 

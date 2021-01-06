@@ -82,7 +82,6 @@ $(OBJECTS_DIR)/positions.o: positions.cpp positions.h \
 		$(COREDIR)/play.h \
 		$(COREDIR)/parse.h \
 		$(COREDIR)/search.h \
-		$(COREDIR)/tree.h \
 		$(COREDIR)/init.h
 	$(CXX) -c $(CXXFLAGS) $(INCPATH) -o $(OBJECTS_DIR)/positions.o positions.cpp
 
@@ -94,8 +93,7 @@ $(COREOBJDIR)/action.o: $(COREDIR)/action.cpp $(COREDIR)/action.h \
 		$(COREDIR)/eval.h \
 		$(COREDIR)/hash.h \
 		$(COREDIR)/play.h \
-		$(COREDIR)/search.h \
-		$(COREDIR)/tree.h
+		$(COREDIR)/search.h
 	$(CXX) -c $(CXXFLAGS) $(INCPATH) -o $(COREOBJDIR)/action.o $(COREDIR)/action.cpp
 
 $(COREOBJDIR)/board.o: $(COREDIR)/board.cpp $(COREDIR)/board.h \
@@ -145,7 +143,6 @@ $(COREOBJDIR)/play.o: $(COREDIR)/play.cpp $(COREDIR)/play.h \
 		$(COREDIR)/typedefs.h \
 		$(COREDIR)/twiddle.h \
 		$(COREDIR)/search.h \
-		$(COREDIR)/tree.h \
 		$(COREDIR)/action.h \
 		$(COREDIR)/init.h \
 		$(COREDIR)/parse.h
@@ -157,6 +154,5 @@ $(COREOBJDIR)/search.o: $(COREDIR)/search.cpp $(COREDIR)/search.h \
 		$(COREDIR)/typedefs.h \
 		$(COREDIR)/twiddle.h \
 		$(COREDIR)/action.h \
-		$(COREDIR)/play.h \
-		$(COREDIR)/tree.h
+		$(COREDIR)/play.h
 	$(CXX) -c $(CXXFLAGS) $(INCPATH) -o $(COREOBJDIR)/search.o $(COREDIR)/search.cpp
