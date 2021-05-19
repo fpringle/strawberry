@@ -1,9 +1,9 @@
 [submodule "core"]
 	path = src/core
-	url = https://github.com/fpringle/strawberryCore.git
+	url = git@github.com:fpringle/strawberryCore.git
 [submodule "gui"]
 	path = src/gui
-	url = https://github.com/fpringle/strawberryGUI.git
+	url = git@github.com:fpringle/strawberryGUI.git
 [submodule "uci"]
 	path = src/uci
-	url = https://github.com/fpringle/strawberryUCI.git
+	url = git@github.com:fpringle/strawberryUCI.git
