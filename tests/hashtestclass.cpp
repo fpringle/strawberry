@@ -81,12 +81,12 @@ void hashtestclass::testInit_keys() {
 
 }
 
-bool perftChildHash(board* b, int depth) {
+bool perftChildHash(Board* b, int depth) {
     if (depth == 0) return true;
     MoveList moves = b->gen_legal_moves();
     uint64_t child_hash;
     uint64_t real_hash;
-    board* child;
+    Board* child;
     for (move_t move : moves) {
         child_hash = b->childHash(move);
         child = doMove(b, move);
@@ -98,23 +98,23 @@ bool perftChildHash(board* b, int depth) {
 }
 
 void hashtestclass::testChildHash() {
-    board* pos2 = new board("r3k2r/p1ppqpb1/bn2pnp1/3PN3/1p2P3/2N2Q1p/PPPBBPPP/R3K2R w KQkq - 1 0");
+    Board* pos2 = new Board("r3k2r/p1ppqpb1/bn2pnp1/3PN3/1p2P3/2N2Q1p/PPPBBPPP/R3K2R w KQkq - 1 0");
     CPPUNIT_ASSERT(perftChildHash(pos2, 5));
 
-    board* pos3 = new board("8/2p5/3p4/KP5r/1R3p1k/8/4P1P1/8 w - - 0 1");
+    Board* pos3 = new Board("8/2p5/3p4/KP5r/1R3p1k/8/4P1P1/8 w - - 0 1");
     CPPUNIT_ASSERT(perftChildHash(pos3, 5));
 
-    board* pos4 = new board("r3k2r/Pppp1ppp/1b3nbN/nP6/BBP1P3/q4N2/Pp1P2PP/R2Q1RK1 w kq - 0 1");
+    Board* pos4 = new Board("r3k2r/Pppp1ppp/1b3nbN/nP6/BBP1P3/q4N2/Pp1P2PP/R2Q1RK1 w kq - 0 1");
     CPPUNIT_ASSERT(perftChildHash(pos4, 5));
 }
 
-void _testPERFThash(board _board, int depth, int basedepth) {
+void _testPERFThash(Board _board, int depth, int basedepth) {
     uint64_t _hash;
     _board.getHash(&_hash);
     CPPUNIT_ASSERT(_board.zobrist_hash() == _hash);
     if (depth == 0) return;
     MoveList moves = _board.gen_legal_moves();
-    board child;
+    Board child;
 
     for (move_t move : moves) {
         child = doMove(_board, move);
@@ -122,14 +122,14 @@ void _testPERFThash(board _board, int depth, int basedepth) {
     }
 }
 
-void testPERFThash(board _board, int depth) {
+void testPERFThash(Board _board, int depth) {
     init();
     _board.update_hash();
     _testPERFThash(_board, depth, depth);
 }
 
 void hashtestclass::incrementalHashStartBoard() {
-    board _board;
+    Board _board;
     for (int i = 0; i < 7; i++) {
         testPERFThash(_board, i);
         std::cout << "verified incremental hash at depth " << i << std::endl;
@@ -137,7 +137,7 @@ void hashtestclass::incrementalHashStartBoard() {
 }
 
 void hashtestclass::incrementalHashPos2() {
-    board _board("r3k2r/p1ppqpb1/bn2pnp1/3PN3/1p2P3/2N2Q1p/PPPBBPPP/R3K2R w KQkq - 1 0");
+    Board _board("r3k2r/p1ppqpb1/bn2pnp1/3PN3/1p2P3/2N2Q1p/PPPBBPPP/R3K2R w KQkq - 1 0");
     for (int i = 0; i < 7; i++) {
         testPERFThash(_board, i);
         std::cout << "verified incremental hash at depth " << i << std::endl;
@@ -145,7 +145,7 @@ void hashtestclass::incrementalHashPos2() {
 }
 
 void hashtestclass::incrementalHashPos3() {
-    board _board("8/2p5/3p4/KP5r/1R3p1k/8/4P1P1/8 w - - 0 1");
+    Board _board("8/2p5/3p4/KP5r/1R3p1k/8/4P1P1/8 w - - 0 1");
     for (int i = 0; i < 7; i++) {
         testPERFThash(_board, i);
         std::cout << "verified incremental hash at depth " << i << std::endl;
@@ -153,7 +153,7 @@ void hashtestclass::incrementalHashPos3() {
 }
 
 void hashtestclass::incrementalHashPos4() {
-    board _board("r3k2r/Pppp1ppp/1b3nbN/nP6/BBP1P3/q4N2/Pp1P2PP/R2Q1RK1 w kq - 0 1");
+    Board _board("r3k2r/Pppp1ppp/1b3nbN/nP6/BBP1P3/q4N2/Pp1P2PP/R2Q1RK1 w kq - 0 1");
     for (int i = 0; i < 7; i++) {
         testPERFThash(_board, i);
         std::cout << "verified incremental hash at depth " << i << std::endl;
@@ -161,7 +161,7 @@ void hashtestclass::incrementalHashPos4() {
 }
 
 void hashtestclass::incrementalHashPos5() {
-    board _board("rnbq1k1r/pp1Pbppp/2p5/8/2B5/8/PPP1NnPP/RNBQK2R w KQ - 1 8");
+    Board _board("rnbq1k1r/pp1Pbppp/2p5/8/2B5/8/PPP1NnPP/RNBQK2R w KQ - 1 8");
     for (int i = 0; i < 7; i++) {
         testPERFThash(_board, i);
         std::cout << "verified incremental hash at depth " << i << std::endl;
@@ -169,21 +169,21 @@ void hashtestclass::incrementalHashPos5() {
 }
 
 void hashtestclass::incrementalHashPos6() {
-    board _board("r4rk1/1pp1qppp/p1np1n2/2b1p1B1/2B1P1b1/P1NP1N2/1PP1QPPP/R4RK1 w - - 0 10");
+    Board _board("r4rk1/1pp1qppp/p1np1n2/2b1p1B1/2B1P1b1/P1NP1N2/1PP1QPPP/R4RK1 w - - 0 10");
     for (int i = 0; i < 7; i++) {
         testPERFThash(_board, i);
         std::cout << "verified incremental hash at depth " << i << std::endl;
     }
 }
 
-bool perftHash(board b, int depth) {
+bool perftHash(Board b, int depth) {
     uint64_t _hsh;
     b.getHash(&_hsh);
     if (_hsh != b.zobrist_hash()) return false;
     if (depth == 0) return true;
 
     MoveList moves = b.gen_legal_moves();
-    board child;
+    Board child;
 
     for (move_t move : moves) {
         child = doMove(b, move);
@@ -193,9 +193,9 @@ bool perftHash(board b, int depth) {
     return true;
 }
 
-void divideHash(board b, int depth) {
+void divideHash(Board b, int depth) {
     MoveList moves = b.gen_legal_moves();
-    board child;
+    Board child;
 
     for (move_t move : moves) {
         child = doMove(b, move);
@@ -207,7 +207,7 @@ void divideHash(board b, int depth) {
 
 void hashtestclass::dividePos2() {
     init();
-    board _board("r3k2r/p1ppqpb1/bn2pnp1/3PN3/1p2P3/2N2Q1p/PPPBBPPP/R3K2R w KQkq - 1 0");
+    Board _board("r3k2r/p1ppqpb1/bn2pnp1/3PN3/1p2P3/2N2Q1p/PPPBBPPP/R3K2R w KQkq - 1 0");
 
     move_t e5g6 = make_move(36, 46, 0, 1, 0, 0);
     move_t h3g2 = make_move(23, 14, 0, 1, 0, 0);

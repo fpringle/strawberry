@@ -292,7 +292,7 @@ void movetestclass::testBishopTargets() {
     CPPUNIT_ASSERT(bishopTargets(sq, _white, _black, mc) == bb_real);
 }
 
-bool testGen(board b) {
+bool testGen(Board b) {
     MoveList all_moves = b.gen_legal_moves();
     MoveList cap_moves = b.gen_captures();
     int j=0, i;
@@ -312,13 +312,13 @@ bool testGen(board b) {
     return all_vec == cap_moves;
 }
 
-bool testGenPerft(board b, int depth) {
+bool testGenPerft(Board b, int depth) {
     if (! testGen(b)) {
         std::cout << b << b.FEN() << std::endl;
         return false;
     }
     if (depth == 0) return true;
-    board child;
+    Board child;
     MoveList moves = b.gen_legal_moves();
     for (move_t move : moves) {
         child = doMove(b, move);
@@ -331,39 +331,39 @@ bool testGenPerft(board b, int depth) {
 
 void movetestclass::testGenCaptures() {
 /*
-    board b("r3k2r/p1ppqpb1/bn2pnp1/3PN3/4P3/p1N2Q2/1PPBBPpP/R4K1R w kq - 0 0");
+    Board b("r3k2r/p1ppqpb1/bn2pnp1/3PN3/4P3/p1N2Q2/1PPBBPpP/R4K1R w kq - 0 0");
     std::cout << b;
     std::cout << testGen(b) << std::endl;
     return;
 */
-    board b1;
-    board b2("r3k2r/p1ppqpb1/bn2pnp1/3PN3/1p2P3/2N2Q1p/PPPBBPPP/R3K2R w KQkq - 1 0");
-    board b3("8/2p5/3p4/KP5r/1R3p1k/8/4P1P1/8 w - - 0 1");
-    board b4("r3k2r/Pppp1ppp/1b3nbN/nP6/BBP1P3/q4N2/Pp1P2PP/R2Q1RK1 w kq - 0 1");
-    board b5("rnbq1k1r/pp1Pbppp/2p5/8/2B5/8/PPP1NnPP/RNBQK2R w KQ - 1 8");
-    board b6("r4rk1/1pp1qppp/p1np1n2/2b1p1B1/2B1P1b1/P1NP1N2/1PP1QPPP/R4RK1 w - - 0 10");
+    Board b1;
+    Board b2("r3k2r/p1ppqpb1/bn2pnp1/3PN3/1p2P3/2N2Q1p/PPPBBPPP/R3K2R w KQkq - 1 0");
+    Board b3("8/2p5/3p4/KP5r/1R3p1k/8/4P1P1/8 w - - 0 1");
+    Board b4("r3k2r/Pppp1ppp/1b3nbN/nP6/BBP1P3/q4N2/Pp1P2PP/R2Q1RK1 w kq - 0 1");
+    Board b5("rnbq1k1r/pp1Pbppp/2p5/8/2B5/8/PPP1NnPP/RNBQK2R w KQ - 1 8");
+    Board b6("r4rk1/1pp1qppp/p1np1n2/2b1p1B1/2B1P1b1/P1NP1N2/1PP1QPPP/R4RK1 w - - 0 10");
 
     CPPUNIT_ASSERT(testGenPerft(b1, 4));
-    std::cout << "Checked board 1 to depth 4, good\n";
+    std::cout << "Checked Board 1 to depth 4, good\n";
     CPPUNIT_ASSERT(testGenPerft(b2, 3));
-    std::cout << "Checked board 2 to depth 3, good\n";
+    std::cout << "Checked Board 2 to depth 3, good\n";
     CPPUNIT_ASSERT(testGenPerft(b3, 4));
-    std::cout << "Checked board 3 to depth 4, good\n";
+    std::cout << "Checked Board 3 to depth 4, good\n";
     CPPUNIT_ASSERT(testGenPerft(b4, 4));
-    std::cout << "Checked board 4 to depth 4, good\n";
+    std::cout << "Checked Board 4 to depth 4, good\n";
     CPPUNIT_ASSERT(testGenPerft(b5, 3));
-    std::cout << "Checked board 5 to depth 3, good\n";
+    std::cout << "Checked Board 5 to depth 3, good\n";
     CPPUNIT_ASSERT(testGenPerft(b6, 3));
-    std::cout << "Checked board 6 to depth 3, good\n";
+    std::cout << "Checked Board 6 to depth 3, good\n";
 
 }
 
-bool perftSAN(board b, int depth) {
+bool perftSAN(Board b, int depth) {
     if (depth == 0) return true;
 
     std::string san_pre, san_post;
     MoveList moves = b.gen_legal_moves();
-    board child;
+    Board child;
 
     for (move_t move : moves) {
         san_pre = b.SAN_pre_move(move);
@@ -384,12 +384,12 @@ bool perftSAN(board b, int depth) {
 
 void movetestclass::testSANoutput() {
     init();
-    board b1;
-    board b2("r3k2r/p1ppqpb1/bn2pnp1/3PN3/1p2P3/2N2Q1p/PPPBBPPP/R3K2R w KQkq - 1 0");
-    board b3("8/2p5/3p4/KP5r/1R3p1k/8/4P1P1/8 w - - 0 1");
-    board b4("r3k2r/Pppp1ppp/1b3nbN/nP6/BBP1P3/q4N2/Pp1P2PP/R2Q1RK1 w kq - 0 1");
-    board b5("rnbq1k1r/pp1Pbppp/2p5/8/2B5/8/PPP1NnPP/RNBQK2R w KQ - 1 8");
-    board b6("r4rk1/1pp1qppp/p1np1n2/2b1p1B1/2B1P1b1/P1NP1N2/1PP1QPPP/R4RK1 w - - 0 10");
+    Board b1;
+    Board b2("r3k2r/p1ppqpb1/bn2pnp1/3PN3/1p2P3/2N2Q1p/PPPBBPPP/R3K2R w KQkq - 1 0");
+    Board b3("8/2p5/3p4/KP5r/1R3p1k/8/4P1P1/8 w - - 0 1");
+    Board b4("r3k2r/Pppp1ppp/1b3nbN/nP6/BBP1P3/q4N2/Pp1P2PP/R2Q1RK1 w kq - 0 1");
+    Board b5("rnbq1k1r/pp1Pbppp/2p5/8/2B5/8/PPP1NnPP/RNBQK2R w KQ - 1 8");
+    Board b6("r4rk1/1pp1qppp/p1np1n2/2b1p1B1/2B1P1b1/P1NP1N2/1PP1QPPP/R4RK1 w - - 0 10");
 
     CPPUNIT_ASSERT(perftSAN(b1, 5));
     std::cout << "Successful b1\n";
@@ -405,7 +405,7 @@ void movetestclass::testSANoutput() {
     std::cout << "Successful b6\n";
 }
 
-void testOneSANinput(board* b, move_t move) {
+void testOneSANinput(Board* b, move_t move) {
     std::string san = b->SAN_pre_move(move);
     move_t calcmove = b->move_from_SAN(san);
     std::string errormsg = "Correct move: " + mtos(move) +
@@ -417,9 +417,9 @@ void testOneSANinput(board* b, move_t move) {
     CPPUNIT_ASSERT_EQUAL_MESSAGE(errormsg, move, calcmove);
 }
 
-void testSANperft(board* b, int depth) {
+void testSANperft(Board* b, int depth) {
     if (depth == 0) return;
-    board* child;
+    Board* child;
     MoveList moves  = b->gen_legal_moves();
     for (move_t move : moves) {
         testOneSANinput(b, move);
@@ -429,15 +429,15 @@ void testSANperft(board* b, int depth) {
 }
 
 void movetestclass::testSANinput() {
-    board* pos2 = new board("r3k2r/p1ppqpb1/bn2pnp1/3PN3/1p2P3/2N2Q1p/PPPBBPPP/R3K2R w KQkq - 1 0");
+    Board* pos2 = new Board("r3k2r/p1ppqpb1/bn2pnp1/3PN3/1p2P3/2N2Q1p/PPPBBPPP/R3K2R w KQkq - 1 0");
     testSANperft(pos2, 4);
 
-    board* pos3 = new board("8/2p5/3p4/KP5r/1R3p1k/8/4P1P1/8 w - - 0 1");
+    Board* pos3 = new Board("8/2p5/3p4/KP5r/1R3p1k/8/4P1P1/8 w - - 0 1");
     testSANperft(pos3, 3);
 
-    board* pos4 = new board("r3k2r/Pppp1ppp/1b3nbN/nP6/BBP1P3/q4N2/Pp1P2PP/R2Q1RK1 w kq - 0 1");
+    Board* pos4 = new Board("r3k2r/Pppp1ppp/1b3nbN/nP6/BBP1P3/q4N2/Pp1P2PP/R2Q1RK1 w kq - 0 1");
     testSANperft(pos4, 4);
 
-    board* pos5 = new board("rnbq1k1r/pp1Pbppp/2p5/8/2B5/8/PPP1NnPP/RNBQK2R w KQ - 1 8");
+    Board* pos5 = new Board("rnbq1k1r/pp1Pbppp/2p5/8/2B5/8/PPP1NnPP/RNBQK2R w KQ - 1 8");
     testSANperft(pos5, 4);
 }

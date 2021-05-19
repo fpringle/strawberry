@@ -85,7 +85,7 @@ std::string unmap_moveset(uint64_t num) {
     return ss.str();
 }
 
-void search_tree(board b, uint64_t ** dest, int32_t ** score, int depth, uint64_t moves_so_far = 0) {
+void search_tree(Board b, uint64_t ** dest, int32_t ** score, int depth, uint64_t moves_so_far = 0) {
     // size of dest == num
     if (depth == 0) {
         **dest = moves_so_far;
@@ -98,7 +98,7 @@ void search_tree(board b, uint64_t ** dest, int32_t ** score, int depth, uint64_
 
     else {
         moves_so_far *= 4160;
-        board child;
+        Board child;
         MoveList moves = b.gen_legal_moves();
         uint64_t new_moveset;
 
@@ -110,7 +110,7 @@ void search_tree(board b, uint64_t ** dest, int32_t ** score, int depth, uint64_
     }
 }
 
-void tree_file(board b, int depth, int * expected, std::string suffix) {
+void tree_file(Board b, int depth, int * expected, std::string suffix) {
     init_rays();
     int num = expected[ depth - 1 ];
     uint64_t * dest = new uint64_t[num];
@@ -133,7 +133,7 @@ void tree_file(board b, int depth, int * expected, std::string suffix) {
 }
 
 void searchtestclass::testSearch_tree() {
-    board b;
+    Board b;
     int exp[] = {20, 400, 8902, 197281};
     std::string suff = "startpos";
     tree_file(b, 4, exp, suff);

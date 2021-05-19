@@ -25,7 +25,7 @@ void boardtestclass::setUp() { }
 void boardtestclass::tearDown() { }
 
 void boardtestclass::testBoard() {
-    board _board;
+    Board _board;
     bitboard pb_real[12];
     bool castling[4];
     bool ep;
@@ -141,7 +141,7 @@ void boardtestclass::testBoard2() {
     pb[10] = blackQueenStart;
     pb[11] = blackKingStart;
 
-    board _board(pb, castling, ep, dPPFile, clk, full_clk, side, open_value, end_value);
+    Board _board(pb, castling, ep, dPPFile, clk, full_clk, side, open_value, end_value);
 
     _board.getBitboards(pb_real);
     _board.getCastlingRights(castling_real);
@@ -225,8 +225,8 @@ void boardtestclass::testBoard3() {
     pb[10] = blackQueenStart;
     pb[11] = blackKingStart;
 
-    board _board2(pb, castling, ep, dPPFile, clk, full_clk, side, open_value, end_value);
-    board _board = _board2;
+    Board _board2(pb, castling, ep, dPPFile, clk, full_clk, side, open_value, end_value);
+    Board _board = _board2;
 
     CPPUNIT_ASSERT_MESSAGE("_board1, _board2 not equal", _board == _board2);
 
@@ -262,7 +262,7 @@ void boardtestclass::testBoard3() {
 }
 
 void boardtestclass::testPrint_bb() {
-    board b;
+    Board b;
     bitboard pb[12];
     b.getBitboards(pb);
     std::stringstream ss;
@@ -387,7 +387,7 @@ void boardtestclass::testPrint_bb() {
 }
 
 void boardtestclass::testPrint_board() {
-    board _board;
+    Board _board;
     std::stringstream ss;
     _board.print_board(ss);
 
@@ -404,11 +404,11 @@ void boardtestclass::testPrint_board() {
 
             "   A B C D E F G H\n";
 
-    CPPUNIT_ASSERT_MESSAGE("error printing initial board", ss.str() == real);
+    CPPUNIT_ASSERT_MESSAGE("error printing initial Board", ss.str() == real);
 }
 
 void boardtestclass::testPrint_board_operator() {
-    board _board;
+    Board _board;
     std::stringstream ss;
     ss << _board;
 
@@ -425,11 +425,11 @@ void boardtestclass::testPrint_board_operator() {
 
             "   A B C D E F G H\n";
 
-    CPPUNIT_ASSERT_MESSAGE("error printing initial board", ss.str() == real);
+    CPPUNIT_ASSERT_MESSAGE("error printing initial Board", ss.str() == real);
 }
 
 void boardtestclass::testPrint_all() {
-    board _board;
+    Board _board;
     std::stringstream ss;
     _board.print_all(ss);
 
@@ -464,11 +464,11 @@ void boardtestclass::testPrint_all() {
             "Fullmove Clock:\n"
             "  0\n";
 
-    CPPUNIT_ASSERT_MESSAGE("Error print_all-ing inital board", ss.str() == real);
+    CPPUNIT_ASSERT_MESSAGE("Error print_all-ing inital Board", ss.str() == real);
 }
 
 void boardtestclass::testFEN() {
-    board _board;
+    Board _board;
 
     std::stringstream ss, ss2;
     std::string s2;
@@ -484,7 +484,7 @@ void boardtestclass::testFEN() {
     CPPUNIT_ASSERT_MESSAGE("FEN output test 1 failed", s2 == s);
 
     ss.str("");
-    board _board2(s);
+    Board _board2(s);
     _board.print_all(ss);
     _board2.print_all(ss2);
     //    _board.print_all( );
@@ -516,8 +516,8 @@ void boardtestclass::testSet_side() {
 
     bool castling[] = {1, 1, 1, 1};
 
-    board _board1(bb, castling, 0, 0, 0, 0, black, 0, 0);
-    board _board2(bb, castling, 0, 0, 0, 0, white, 0, 0);
+    Board _board1(bb, castling, 0, 0, 0, 0, black, 0, 0);
+    Board _board2(bb, castling, 0, 0, 0, 0, white, 0, 0);
 
     _board1.set_side(white);
 

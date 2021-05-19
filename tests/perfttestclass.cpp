@@ -36,9 +36,9 @@ void perfttestclass::setUp() { }
 
 void perfttestclass::tearDown() { }
 
-unsigned int PERFT_pseud(board b, int depth, bool print_progress = false) {
+unsigned int PERFT_pseud(Board b, int depth, bool print_progress = false) {
     unsigned int ret = 0;
-    board child;
+    Board child;
     colour side;
     b.getSide(&side);
 
@@ -55,10 +55,10 @@ unsigned int PERFT_pseud(board b, int depth, bool print_progress = false) {
     return ret;
 }
 
-unsigned int PERFT_legalcheck_faster(board b, int depth, bool print_progress = false) {
+unsigned int PERFT_legalcheck_faster(Board b, int depth, bool print_progress = false) {
     if (depth == 0) return 1;
     unsigned int ret = 0;
-    board child;
+    Board child;
     colour side;
     b.getSide(&side);
 
@@ -75,7 +75,7 @@ unsigned int PERFT_legalcheck_faster(board b, int depth, bool print_progress = f
     return ret;
 }
 
-void testBoard(board b, int depth, unsigned int* real) {
+void testBoard(Board b, int depth, unsigned int* real) {
     init_rays();
     unsigned int n_nodes;
     std::stringstream ss;
@@ -105,7 +105,7 @@ void testBoard(board b, int depth, unsigned int* real) {
 
 void perfttestclass::testStartBoard() {
     int depth = 6;
-    board _board;
+    Board _board;
     unsigned int real[] = {1, 20, 400, 8902, 197281,
                             4865609, 119060324};
 
@@ -114,7 +114,7 @@ void perfttestclass::testStartBoard() {
 
 void perfttestclass::testPosition2() {
     int depth = 6;
-    board _board("r3k2r/p1ppqpb1/bn2pnp1/3PN3/1p2P3/2N2Q1p/PPPBBPPP/R3K2R w KQkq - 1 0");
+    Board _board("r3k2r/p1ppqpb1/bn2pnp1/3PN3/1p2P3/2N2Q1p/PPPBBPPP/R3K2R w KQkq - 1 0");
     unsigned int real[] = {1, 48, 2039, 97862,
                            4085603, 193690690};
 
@@ -122,7 +122,7 @@ void perfttestclass::testPosition2() {
 }
 void perfttestclass::testPosition3() {
     int depth = 6;
-    board _board("8/2p5/3p4/KP5r/1R3p1k/8/4P1P1/8 w - - 0 1");
+    Board _board("8/2p5/3p4/KP5r/1R3p1k/8/4P1P1/8 w - - 0 1");
     unsigned int real[] = {1, 14, 191, 2812,
                             43238, 674624, 11030083,
                             178633661};
@@ -131,7 +131,7 @@ void perfttestclass::testPosition3() {
 }
 void perfttestclass::testPosition4() {
     int depth = 6;
-    board _board("r3k2r/Pppp1ppp/1b3nbN/nP6/BBP1P3/q4N2/Pp1P2PP/R2Q1RK1 w kq - 0 1");
+    Board _board("r3k2r/Pppp1ppp/1b3nbN/nP6/BBP1P3/q4N2/Pp1P2PP/R2Q1RK1 w kq - 0 1");
     unsigned int real[] = {1, 6, 264, 9467,
                            422333, 15833292};
 
@@ -139,7 +139,7 @@ void perfttestclass::testPosition4() {
 }
 void perfttestclass::testPosition5() {
     int depth = 6;
-    board _board("rnbq1k1r/pp1Pbppp/2p5/8/2B5/8/PPP1NnPP/RNBQK2R w KQ - 1 8");
+    Board _board("rnbq1k1r/pp1Pbppp/2p5/8/2B5/8/PPP1NnPP/RNBQK2R w KQ - 1 8");
     unsigned int real[] = {1, 44, 1486, 62379,
                            2103487, 89941194};
 
@@ -147,20 +147,20 @@ void perfttestclass::testPosition5() {
 }
 void perfttestclass::testPosition6() {
     int depth = 6;
-    board _board("r4rk1/1pp1qppp/p1np1n2/2b1p1B1/2B1P1b1/P1NP1N2/1PP1QPPP/R4RK1 w - - 0 10");
+    Board _board("r4rk1/1pp1qppp/p1np1n2/2b1p1B1/2B1P1b1/P1NP1N2/1PP1QPPP/R4RK1 w - - 0 10");
     unsigned int real[] = {1, 46, 2079, 89890,
                            3894594, 164075551};
 
     testBoard(_board, depth, real);
 }
 
-void divide_pseud(board _board, int depth, unsigned int * cache) {
+void divide_pseud(Board _board, int depth, unsigned int * cache) {
     bool print_progress = false;
     bool _print_moves = 0;
     bool _print_total = 0;
     MoveList moves = _board.gen_moves();
     int num_children;
-    board _child;
+    Board _child;
     int total = 0;
     colour side;
     _board.getSide(&side);
@@ -212,7 +212,7 @@ void divide_pseud(board _board, int depth, unsigned int * cache) {
     if (_print_total || _print_moves) std::cout << "  Pseud total: " << total << std::endl << std::endl;
 }
 
-bool divide_legal(board _board, int depth, unsigned int * cache) {
+bool divide_legal(Board _board, int depth, unsigned int * cache) {
     bool print_progress = false;
     bool _print_moves = 0;
     bool _print_total = 0;
@@ -224,7 +224,7 @@ bool divide_legal(board _board, int depth, unsigned int * cache) {
     //        std::cout << num_moves << std::endl;
     //    }
     int num_children;
-    board _child;
+    Board _child;
     int total = 0;
     colour side;
     _board.getSide(&side);
@@ -278,7 +278,7 @@ bool divide_legal(board _board, int depth, unsigned int * cache) {
 
 void perfttestclass::divideStartboard() {
     init_rays();
-    board b;
+    Board b;
 
     move_t a2a3 = make_move(8, 16, 0, 0, 0, 0);
     move_t d7d5 = make_move(51, 35, 0, 0, 0, 1);
@@ -342,7 +342,7 @@ void perfttestclass::divideStartboard() {
 
 void perfttestclass::dividePos2() {
     init_rays();
-    board b("r3k2r/p1ppqpb1/bn2pnp1/3PN3/1p2P3/2N2Q1p/PPPBBPPP/R3K2R w KQkq - 1 0");
+    Board b("r3k2r/p1ppqpb1/bn2pnp1/3PN3/1p2P3/2N2Q1p/PPPBBPPP/R3K2R w KQkq - 1 0");
 
     move_t e1f1 = make_move(4, 5, 0, 0, 0, 0);
     move_t b6c4 = make_move(41, 26, 0, 0, 0, 0);
@@ -410,7 +410,7 @@ void perfttestclass::dividePos2() {
 void perfttestclass::dividePos3() {
     int depth = 5;
     init_rays();
-    board b("8/2p5/3p4/KP5r/1R3p1k/8/4P1P1/8 w - - 0 1");
+    Board b("8/2p5/3p4/KP5r/1R3p1k/8/4P1P1/8 w - - 0 1");
 
     move_t b4b1 = make_move(25,  1, 0, 0, 0, 0);
     move_t f4f3 = make_move(29, 21, 0, 0, 0, 0);
@@ -489,7 +489,7 @@ void perfttestclass::dividePos3() {
 
 void perfttestclass::dividePos4() {
     init_rays();
-    board b("r3k2r/Pppp1ppp/1b3nbN/nP6/BBP1P3/q4N2/Pp1P2PP/R2Q1RK1 w kq - 0 1");
+    Board b("r3k2r/Pppp1ppp/1b3nbN/nP6/BBP1P3/q4N2/Pp1P2PP/R2Q1RK1 w kq - 0 1");
 
     move_t b4c5 = make_move(25, 34, 0, 0, 0, 0);
     move_t a3d3 = make_move(16, 19, 0, 0, 0, 0);
@@ -556,12 +556,12 @@ void perfttestclass::dividePos4() {
 
 void perfttestclass::pos3b4b1f4f3e2e3f3g2b1h1() {
     init_rays();
-    board b("8/2p5/3p4/KP5r/7k/4P3/6p1/7R b - - 1 1");
+    Board b("8/2p5/3p4/KP5r/7k/4P3/6p1/7R b - - 1 1");
     b.print_board();
     MoveList pseud_moves = b.gen_moves();
     int _num_pseud = 0;
     MoveList legal_moves = b.gen_legal_moves();
-    board child;
+    Board child;
 
     std::cout << "pseud:\n";
     for (move_t move : pseud_moves) {

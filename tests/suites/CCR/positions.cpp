@@ -10,7 +10,7 @@
 #include "init.h"
 
 bool test_position(std::string pos, std::vector<std::string> bms, int timeout) {
-    chessCore::board b(pos);
+    chessCore::Board b(pos);
     chessCore::Searcher searcher;
     chessCore::move_t comp_move = searcher.search(&b, timeout, false);
     std::string comp_move_san = b.SAN_pre_move(comp_move);
@@ -67,7 +67,7 @@ int run_test_suite(int timeout) {
 
 void print_positions() {
     for (std::string pos : positions) {
-        chessCore::board b(pos);
+        chessCore::Board b(pos);
         std::cout << b;
     }
 }
