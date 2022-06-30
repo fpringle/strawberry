@@ -344,10 +344,15 @@ void perfttestclass::dividePos2() {
     init_rays();
     Board b("r3k2r/p1ppqpb1/bn2pnp1/3PN3/1p2P3/2N2Q1p/PPPBBPPP/R3K2R w KQkq - 1 0");
 
+    move_t a1b1 = make_move(0, 1, 0, 0, 0, 0);
+    move_t f6e4 = make_move(45, 28, 0, 1, 0, 0);
+
     move_t e1f1 = make_move(4, 5, 0, 0, 0, 0);
     move_t b6c4 = make_move(41, 26, 0, 0, 0, 0);
     move_t e2d1 = make_move(12, 3, 0, 0, 0, 0);
     move_t c4e3 = make_move(26, 20, 0, 0, 0, 0);
+    //b = doMove(b, a1b1);
+    //b = doMove(b, f6e4);
     //    b = doMove( b, e1f1 );
     //    b = doMove( b, b6c4 );
     //    b = doMove( b, e2d1 );
@@ -362,14 +367,15 @@ void perfttestclass::dividePos2() {
     unsigned int legal_cache[4096];
     int from_square;
     int to_square;
+    int depth = 4;
 
     for (i = 0; i < 4096; i++) {
         pseud_cache[i] = _max;
         legal_cache[i] = _max;
     }
 
-    divide_pseud(b, 5, pseud_cache);
-    if (divide_legal(b, 5, legal_cache)) {
+    divide_pseud(b, depth, pseud_cache);
+    if (divide_legal(b, depth, legal_cache)) {
 
         std::cout << "move   pseud   legal\n";
 
@@ -377,16 +383,16 @@ void perfttestclass::dividePos2() {
             if (legal_cache[i] != _max || pseud_cache[i] != _max) {
                 from_square = i / 64;
                 to_square = i % 64;
-                itos(from_square, std::cout);
-                std::cout << " ";
-                itos(to_square, std::cout);
-                std::cout << ":  ";
-                std::cout << pseud_cache[i] << "   ";
-                std::cout << legal_cache[i] << "    ";
+                itos(from_square, std::cerr);
+                std::cerr << " ";
+                itos(to_square, std::cerr);
+                std::cerr << " ";
+                std::cerr << pseud_cache[i]; // << "   ";
+                //std::cout << legal_cache[i] << "    ";
                 if (pseud_cache[i] != legal_cache[i]) {
-                    std::cout << "ERROR";
+                    std::cerr << "ERROR";
                 }
-                std::cout << std::endl;
+                std::cerr << std::endl;
             }
         }
     }

@@ -33,7 +33,8 @@ DISTNAME      = strawberry1.0.0
 DISTDIR = /home/freddy/Documents/cpl/strawberry/.tmp/strawberry1.0.0
 SUBTARGETS    =  \
 		sub-src-core \
-		sub-src-gui
+		sub-src-gui \
+		sub-src-uci
 
 
 sub-src-core-qmake_all:  FORCE
@@ -45,7 +46,7 @@ sub-src-core: FORCE
 	cd src/core/ && ( test -e Makefile || $(QMAKE) -o Makefile /home/freddy/Documents/cpl/strawberry/src/core/core.pro ) && $(MAKE) -f Makefile
 sub-src-core-make_first: FORCE
 	@test -d src/core/ || mkdir -p src/core/
-	cd src/core/ && ( test -e Makefile || $(QMAKE) -o Makefile /home/freddy/Documents/cpl/strawberry/src/core/core.pro ) && $(MAKE) -f Makefile
+	cd src/core/ && ( test -e Makefile || $(QMAKE) -o Makefile /home/freddy/Documents/cpl/strawberry/src/core/core.pro ) && $(MAKE) -f Makefile 
 sub-src-core-all: FORCE
 	@test -d src/core/ || mkdir -p src/core/
 	cd src/core/ && ( test -e Makefile || $(QMAKE) -o Makefile /home/freddy/Documents/cpl/strawberry/src/core/core.pro ) && $(MAKE) -f Makefile all
@@ -70,7 +71,7 @@ sub-src-gui: sub-src-core FORCE
 	cd src/gui/ && ( test -e Makefile || $(QMAKE) -o Makefile /home/freddy/Documents/cpl/strawberry/src/gui/gui.pro ) && $(MAKE) -f Makefile
 sub-src-gui-make_first: sub-src-core-make_first FORCE
 	@test -d src/gui/ || mkdir -p src/gui/
-	cd src/gui/ && ( test -e Makefile || $(QMAKE) -o Makefile /home/freddy/Documents/cpl/strawberry/src/gui/gui.pro ) && $(MAKE) -f Makefile
+	cd src/gui/ && ( test -e Makefile || $(QMAKE) -o Makefile /home/freddy/Documents/cpl/strawberry/src/gui/gui.pro ) && $(MAKE) -f Makefile 
 sub-src-gui-all: sub-src-core-all FORCE
 	@test -d src/gui/ || mkdir -p src/gui/
 	cd src/gui/ && ( test -e Makefile || $(QMAKE) -o Makefile /home/freddy/Documents/cpl/strawberry/src/gui/gui.pro ) && $(MAKE) -f Makefile all
@@ -86,8 +87,33 @@ sub-src-gui-install_subtargets: sub-src-core-install_subtargets FORCE
 sub-src-gui-uninstall_subtargets: sub-src-core-uninstall_subtargets FORCE
 	@test -d src/gui/ || mkdir -p src/gui/
 	cd src/gui/ && ( test -e Makefile || $(QMAKE) -o Makefile /home/freddy/Documents/cpl/strawberry/src/gui/gui.pro ) && $(MAKE) -f Makefile uninstall
+sub-src-uci-qmake_all:  FORCE
+	@test -d src/uci/ || mkdir -p src/uci/
+	cd src/uci/ && $(QMAKE) -o Makefile /home/freddy/Documents/cpl/strawberry/src/uci/uci.pro
+	cd src/uci/ && $(MAKE) -f Makefile qmake_all
+sub-src-uci: FORCE
+	@test -d src/uci/ || mkdir -p src/uci/
+	cd src/uci/ && ( test -e Makefile || $(QMAKE) -o Makefile /home/freddy/Documents/cpl/strawberry/src/uci/uci.pro ) && $(MAKE) -f Makefile
+sub-src-uci-make_first: FORCE
+	@test -d src/uci/ || mkdir -p src/uci/
+	cd src/uci/ && ( test -e Makefile || $(QMAKE) -o Makefile /home/freddy/Documents/cpl/strawberry/src/uci/uci.pro ) && $(MAKE) -f Makefile 
+sub-src-uci-all: FORCE
+	@test -d src/uci/ || mkdir -p src/uci/
+	cd src/uci/ && ( test -e Makefile || $(QMAKE) -o Makefile /home/freddy/Documents/cpl/strawberry/src/uci/uci.pro ) && $(MAKE) -f Makefile all
+sub-src-uci-clean: FORCE
+	@test -d src/uci/ || mkdir -p src/uci/
+	cd src/uci/ && ( test -e Makefile || $(QMAKE) -o Makefile /home/freddy/Documents/cpl/strawberry/src/uci/uci.pro ) && $(MAKE) -f Makefile clean
+sub-src-uci-distclean: FORCE
+	@test -d src/uci/ || mkdir -p src/uci/
+	cd src/uci/ && ( test -e Makefile || $(QMAKE) -o Makefile /home/freddy/Documents/cpl/strawberry/src/uci/uci.pro ) && $(MAKE) -f Makefile distclean
+sub-src-uci-install_subtargets: FORCE
+	@test -d src/uci/ || mkdir -p src/uci/
+	cd src/uci/ && ( test -e Makefile || $(QMAKE) -o Makefile /home/freddy/Documents/cpl/strawberry/src/uci/uci.pro ) && $(MAKE) -f Makefile install
+sub-src-uci-uninstall_subtargets: FORCE
+	@test -d src/uci/ || mkdir -p src/uci/
+	cd src/uci/ && ( test -e Makefile || $(QMAKE) -o Makefile /home/freddy/Documents/cpl/strawberry/src/uci/uci.pro ) && $(MAKE) -f Makefile uninstall
 
-Makefile: strawberry.pro .qmake.conf /usr/lib/x86_64-linux-gnu/qt5/mkspecs/linux-g++/qmake.conf /usr/lib/x86_64-linux-gnu/qt5/mkspecs/features/spec_pre.prf \
+Makefile: strawberry.pro /usr/lib/x86_64-linux-gnu/qt5/mkspecs/linux-g++/qmake.conf /usr/lib/x86_64-linux-gnu/qt5/mkspecs/features/spec_pre.prf \
 		/usr/lib/x86_64-linux-gnu/qt5/mkspecs/common/unix.conf \
 		/usr/lib/x86_64-linux-gnu/qt5/mkspecs/common/linux.conf \
 		/usr/lib/x86_64-linux-gnu/qt5/mkspecs/common/sanitize.conf \
@@ -130,7 +156,6 @@ Makefile: strawberry.pro .qmake.conf /usr/lib/x86_64-linux-gnu/qt5/mkspecs/linux
 		/usr/lib/x86_64-linux-gnu/qt5/mkspecs/modules/qt_lib_service_support_private.pri \
 		/usr/lib/x86_64-linux-gnu/qt5/mkspecs/modules/qt_lib_sql.pri \
 		/usr/lib/x86_64-linux-gnu/qt5/mkspecs/modules/qt_lib_sql_private.pri \
-		/usr/lib/x86_64-linux-gnu/qt5/mkspecs/modules/qt_lib_svg.pri \
 		/usr/lib/x86_64-linux-gnu/qt5/mkspecs/modules/qt_lib_testlib.pri \
 		/usr/lib/x86_64-linux-gnu/qt5/mkspecs/modules/qt_lib_testlib_private.pri \
 		/usr/lib/x86_64-linux-gnu/qt5/mkspecs/modules/qt_lib_theme_support_private.pri \
@@ -144,8 +169,6 @@ Makefile: strawberry.pro .qmake.conf /usr/lib/x86_64-linux-gnu/qt5/mkspecs/linux
 		/usr/lib/x86_64-linux-gnu/qt5/mkspecs/features/qt_config.prf \
 		/usr/lib/x86_64-linux-gnu/qt5/mkspecs/linux-g++/qmake.conf \
 		/usr/lib/x86_64-linux-gnu/qt5/mkspecs/features/spec_post.prf \
-		.qmake.conf \
-		.qmake.stash \
 		/usr/lib/x86_64-linux-gnu/qt5/mkspecs/features/exclusive_builds.prf \
 		/usr/lib/x86_64-linux-gnu/qt5/mkspecs/features/toolchain.prf \
 		/usr/lib/x86_64-linux-gnu/qt5/mkspecs/features/default_pre.prf \
@@ -203,7 +226,6 @@ Makefile: strawberry.pro .qmake.conf /usr/lib/x86_64-linux-gnu/qt5/mkspecs/linux
 /usr/lib/x86_64-linux-gnu/qt5/mkspecs/modules/qt_lib_service_support_private.pri:
 /usr/lib/x86_64-linux-gnu/qt5/mkspecs/modules/qt_lib_sql.pri:
 /usr/lib/x86_64-linux-gnu/qt5/mkspecs/modules/qt_lib_sql_private.pri:
-/usr/lib/x86_64-linux-gnu/qt5/mkspecs/modules/qt_lib_svg.pri:
 /usr/lib/x86_64-linux-gnu/qt5/mkspecs/modules/qt_lib_testlib.pri:
 /usr/lib/x86_64-linux-gnu/qt5/mkspecs/modules/qt_lib_testlib_private.pri:
 /usr/lib/x86_64-linux-gnu/qt5/mkspecs/modules/qt_lib_theme_support_private.pri:
@@ -217,8 +239,6 @@ Makefile: strawberry.pro .qmake.conf /usr/lib/x86_64-linux-gnu/qt5/mkspecs/linux
 /usr/lib/x86_64-linux-gnu/qt5/mkspecs/features/qt_config.prf:
 /usr/lib/x86_64-linux-gnu/qt5/mkspecs/linux-g++/qmake.conf:
 /usr/lib/x86_64-linux-gnu/qt5/mkspecs/features/spec_post.prf:
-.qmake.conf:
-.qmake.stash:
 /usr/lib/x86_64-linux-gnu/qt5/mkspecs/features/exclusive_builds.prf:
 /usr/lib/x86_64-linux-gnu/qt5/mkspecs/features/toolchain.prf:
 /usr/lib/x86_64-linux-gnu/qt5/mkspecs/features/default_pre.prf:
@@ -235,16 +255,16 @@ strawberry.pro:
 qmake: FORCE
 	@$(QMAKE) -o Makefile strawberry.pro
 
-qmake_all: sub-src-core-qmake_all sub-src-gui-qmake_all FORCE
+qmake_all: sub-src-core-qmake_all sub-src-gui-qmake_all sub-src-uci-qmake_all FORCE
 
-make_first: sub-src-core-make_first sub-src-gui-make_first  FORCE
-all: sub-src-core-all sub-src-gui-all  FORCE
-clean: sub-src-core-clean sub-src-gui-clean  FORCE
-distclean: sub-src-core-distclean sub-src-gui-distclean  FORCE
+make_first: sub-src-core-make_first sub-src-gui-make_first sub-src-uci-make_first  FORCE
+all: sub-src-core-all sub-src-gui-all sub-src-uci-all  FORCE
+clean: sub-src-core-clean sub-src-gui-clean sub-src-uci-clean  FORCE
+distclean: sub-src-core-distclean sub-src-gui-distclean sub-src-uci-distclean  FORCE
 	-$(DEL_FILE) Makefile
 	-$(DEL_FILE) .qmake.stash
-install_subtargets: sub-src-core-install_subtargets sub-src-gui-install_subtargets FORCE
-uninstall_subtargets: sub-src-core-uninstall_subtargets sub-src-gui-uninstall_subtargets FORCE
+install_subtargets: sub-src-core-install_subtargets sub-src-gui-install_subtargets sub-src-uci-install_subtargets FORCE
+uninstall_subtargets: sub-src-core-uninstall_subtargets sub-src-gui-uninstall_subtargets sub-src-uci-uninstall_subtargets FORCE
 
 sub-src-core-check:
 	@test -d src/core/ || mkdir -p src/core/
@@ -252,7 +272,10 @@ sub-src-core-check:
 sub-src-gui-check: sub-src-core-check
 	@test -d src/gui/ || mkdir -p src/gui/
 	cd src/gui/ && ( test -e Makefile || $(QMAKE) -o Makefile /home/freddy/Documents/cpl/strawberry/src/gui/gui.pro ) && $(MAKE) -f Makefile check
-check: sub-src-core-check sub-src-gui-check
+sub-src-uci-check:
+	@test -d src/uci/ || mkdir -p src/uci/
+	cd src/uci/ && ( test -e Makefile || $(QMAKE) -o Makefile /home/freddy/Documents/cpl/strawberry/src/uci/uci.pro ) && $(MAKE) -f Makefile check
+check: sub-src-core-check sub-src-gui-check sub-src-uci-check
 
 sub-src-core-benchmark:
 	@test -d src/core/ || mkdir -p src/core/
@@ -260,7 +283,10 @@ sub-src-core-benchmark:
 sub-src-gui-benchmark: sub-src-core-benchmark
 	@test -d src/gui/ || mkdir -p src/gui/
 	cd src/gui/ && ( test -e Makefile || $(QMAKE) -o Makefile /home/freddy/Documents/cpl/strawberry/src/gui/gui.pro ) && $(MAKE) -f Makefile benchmark
-benchmark: sub-src-core-benchmark sub-src-gui-benchmark
+sub-src-uci-benchmark:
+	@test -d src/uci/ || mkdir -p src/uci/
+	cd src/uci/ && ( test -e Makefile || $(QMAKE) -o Makefile /home/freddy/Documents/cpl/strawberry/src/uci/uci.pro ) && $(MAKE) -f Makefile benchmark
+benchmark: sub-src-core-benchmark sub-src-gui-benchmark sub-src-uci-benchmark
 install:install_subtargets  FORCE
 
 uninstall: uninstall_subtargets FORCE
@@ -270,9 +296,9 @@ FORCE:
 dist: distdir FORCE
 	(cd `dirname $(DISTDIR)` && $(TAR) $(DISTNAME).tar $(DISTNAME) && $(COMPRESS) $(DISTNAME).tar) && $(MOVE) `dirname $(DISTDIR)`/$(DISTNAME).tar.gz . && $(DEL_FILE) -r $(DISTDIR)
 
-distdir: sub-src-core-distdir sub-src-gui-distdir FORCE
+distdir: sub-src-core-distdir sub-src-gui-distdir sub-src-uci-distdir FORCE
 	@test -d $(DISTDIR) || mkdir -p $(DISTDIR)
-	$(COPY_FILE) --parents .qmake.conf .qmake.stash strawberry.pro $(DISTDIR)/
+	$(COPY_FILE) --parents /usr/lib/x86_64-linux-gnu/qt5/mkspecs/features/spec_pre.prf /usr/lib/x86_64-linux-gnu/qt5/mkspecs/common/unix.conf /usr/lib/x86_64-linux-gnu/qt5/mkspecs/common/linux.conf /usr/lib/x86_64-linux-gnu/qt5/mkspecs/common/sanitize.conf /usr/lib/x86_64-linux-gnu/qt5/mkspecs/common/gcc-base.conf /usr/lib/x86_64-linux-gnu/qt5/mkspecs/common/gcc-base-unix.conf /usr/lib/x86_64-linux-gnu/qt5/mkspecs/common/g++-base.conf /usr/lib/x86_64-linux-gnu/qt5/mkspecs/common/g++-unix.conf /usr/lib/x86_64-linux-gnu/qt5/mkspecs/qconfig.pri /usr/lib/x86_64-linux-gnu/qt5/mkspecs/modules/qt_lib_accessibility_support_private.pri /usr/lib/x86_64-linux-gnu/qt5/mkspecs/modules/qt_lib_bootstrap_private.pri /usr/lib/x86_64-linux-gnu/qt5/mkspecs/modules/qt_lib_concurrent.pri /usr/lib/x86_64-linux-gnu/qt5/mkspecs/modules/qt_lib_concurrent_private.pri /usr/lib/x86_64-linux-gnu/qt5/mkspecs/modules/qt_lib_core.pri /usr/lib/x86_64-linux-gnu/qt5/mkspecs/modules/qt_lib_core_private.pri /usr/lib/x86_64-linux-gnu/qt5/mkspecs/modules/qt_lib_dbus.pri /usr/lib/x86_64-linux-gnu/qt5/mkspecs/modules/qt_lib_dbus_private.pri /usr/lib/x86_64-linux-gnu/qt5/mkspecs/modules/qt_lib_devicediscovery_support_private.pri /usr/lib/x86_64-linux-gnu/qt5/mkspecs/modules/qt_lib_edid_support_private.pri /usr/lib/x86_64-linux-gnu/qt5/mkspecs/modules/qt_lib_egl_support_private.pri /usr/lib/x86_64-linux-gnu/qt5/mkspecs/modules/qt_lib_eglfs_kms_support_private.pri /usr/lib/x86_64-linux-gnu/qt5/mkspecs/modules/qt_lib_eglfsdeviceintegration_private.pri /usr/lib/x86_64-linux-gnu/qt5/mkspecs/modules/qt_lib_eventdispatcher_support_private.pri /usr/lib/x86_64-linux-gnu/qt5/mkspecs/modules/qt_lib_fb_support_private.pri /usr/lib/x86_64-linux-gnu/qt5/mkspecs/modules/qt_lib_fontdatabase_support_private.pri /usr/lib/x86_64-linux-gnu/qt5/mkspecs/modules/qt_lib_glx_support_private.pri /usr/lib/x86_64-linux-gnu/qt5/mkspecs/modules/qt_lib_gui.pri /usr/lib/x86_64-linux-gnu/qt5/mkspecs/modules/qt_lib_gui_private.pri /usr/lib/x86_64-linux-gnu/qt5/mkspecs/modules/qt_lib_input_support_private.pri /usr/lib/x86_64-linux-gnu/qt5/mkspecs/modules/qt_lib_kms_support_private.pri /usr/lib/x86_64-linux-gnu/qt5/mkspecs/modules/qt_lib_linuxaccessibility_support_private.pri /usr/lib/x86_64-linux-gnu/qt5/mkspecs/modules/qt_lib_network.pri /usr/lib/x86_64-linux-gnu/qt5/mkspecs/modules/qt_lib_network_private.pri /usr/lib/x86_64-linux-gnu/qt5/mkspecs/modules/qt_lib_opengl.pri /usr/lib/x86_64-linux-gnu/qt5/mkspecs/modules/qt_lib_opengl_private.pri /usr/lib/x86_64-linux-gnu/qt5/mkspecs/modules/qt_lib_openglextensions.pri /usr/lib/x86_64-linux-gnu/qt5/mkspecs/modules/qt_lib_openglextensions_private.pri /usr/lib/x86_64-linux-gnu/qt5/mkspecs/modules/qt_lib_platformcompositor_support_private.pri /usr/lib/x86_64-linux-gnu/qt5/mkspecs/modules/qt_lib_printsupport.pri /usr/lib/x86_64-linux-gnu/qt5/mkspecs/modules/qt_lib_printsupport_private.pri /usr/lib/x86_64-linux-gnu/qt5/mkspecs/modules/qt_lib_service_support_private.pri /usr/lib/x86_64-linux-gnu/qt5/mkspecs/modules/qt_lib_sql.pri /usr/lib/x86_64-linux-gnu/qt5/mkspecs/modules/qt_lib_sql_private.pri /usr/lib/x86_64-linux-gnu/qt5/mkspecs/modules/qt_lib_testlib.pri /usr/lib/x86_64-linux-gnu/qt5/mkspecs/modules/qt_lib_testlib_private.pri /usr/lib/x86_64-linux-gnu/qt5/mkspecs/modules/qt_lib_theme_support_private.pri /usr/lib/x86_64-linux-gnu/qt5/mkspecs/modules/qt_lib_vulkan_support_private.pri /usr/lib/x86_64-linux-gnu/qt5/mkspecs/modules/qt_lib_widgets.pri /usr/lib/x86_64-linux-gnu/qt5/mkspecs/modules/qt_lib_widgets_private.pri /usr/lib/x86_64-linux-gnu/qt5/mkspecs/modules/qt_lib_xcb_qpa_lib_private.pri /usr/lib/x86_64-linux-gnu/qt5/mkspecs/modules/qt_lib_xml.pri /usr/lib/x86_64-linux-gnu/qt5/mkspecs/modules/qt_lib_xml_private.pri /usr/lib/x86_64-linux-gnu/qt5/mkspecs/features/qt_functions.prf /usr/lib/x86_64-linux-gnu/qt5/mkspecs/features/qt_config.prf /usr/lib/x86_64-linux-gnu/qt5/mkspecs/linux-g++/qmake.conf /usr/lib/x86_64-linux-gnu/qt5/mkspecs/features/spec_post.prf /usr/lib/x86_64-linux-gnu/qt5/mkspecs/features/exclusive_builds.prf /usr/lib/x86_64-linux-gnu/qt5/mkspecs/features/toolchain.prf /usr/lib/x86_64-linux-gnu/qt5/mkspecs/features/default_pre.prf /usr/lib/x86_64-linux-gnu/qt5/mkspecs/features/resolve_config.prf /usr/lib/x86_64-linux-gnu/qt5/mkspecs/features/default_post.prf /usr/lib/x86_64-linux-gnu/qt5/mkspecs/features/warn_on.prf /usr/lib/x86_64-linux-gnu/qt5/mkspecs/features/qmake_use.prf /usr/lib/x86_64-linux-gnu/qt5/mkspecs/features/file_copies.prf /usr/lib/x86_64-linux-gnu/qt5/mkspecs/features/testcase_targets.prf /usr/lib/x86_64-linux-gnu/qt5/mkspecs/features/exceptions.prf /usr/lib/x86_64-linux-gnu/qt5/mkspecs/features/yacc.prf /usr/lib/x86_64-linux-gnu/qt5/mkspecs/features/lex.prf strawberry.pro $(DISTDIR)/
 
 sub-src-core-distdir: FORCE
 	@test -d src/core/ || mkdir -p src/core/
@@ -281,4 +307,8 @@ sub-src-core-distdir: FORCE
 sub-src-gui-distdir: FORCE
 	@test -d src/gui/ || mkdir -p src/gui/
 	cd src/gui/ && ( test -e Makefile || $(QMAKE) -o Makefile /home/freddy/Documents/cpl/strawberry/src/gui/gui.pro ) && $(MAKE) -e -f Makefile distdir DISTDIR=$(DISTDIR)/src/gui
+
+sub-src-uci-distdir: FORCE
+	@test -d src/uci/ || mkdir -p src/uci/
+	cd src/uci/ && ( test -e Makefile || $(QMAKE) -o Makefile /home/freddy/Documents/cpl/strawberry/src/uci/uci.pro ) && $(MAKE) -e -f Makefile distdir DISTDIR=$(DISTDIR)/src/uci
 
