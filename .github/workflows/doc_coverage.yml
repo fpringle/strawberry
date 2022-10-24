@@ -17,6 +17,7 @@ jobs:
         fetch-depth: 0
         submodules: recursive
         token: ${{ secrets.STRAWBERRY_PAT }}
+        persist-credentials: false
 
     - name: Set up Python 2.7
       uses: actions/setup-python@v2
