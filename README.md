@@ -1,4 +1,11 @@
 # strawberry
+
+<div>
+  <a href="https://github.com/fpringle/strawberry/actions/workflows/doc_coverage.yml">
+    <img src="images/doc_coverage.svg" height="20" alt="Documentation coverage" title="Documentation coverage">
+  </a>
+</div>
+
 A C++ chess engine.
 
 ### Submodules
