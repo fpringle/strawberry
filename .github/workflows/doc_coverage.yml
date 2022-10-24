@@ -10,8 +10,6 @@ jobs:
     runs-on: ubuntu-latest
     strategy:
       max-parallel: 4
-      matrix:
-        python-version: [2.7, 3.8]
 
     steps:
     - uses: actions/checkout@v2
@@ -20,10 +18,15 @@ jobs:
         submodules: recursive
         token: ${{ secrets.STRAWBERRY_PAT }}
 
-    - name: Set up Python ${{ matrix.python-version }}
+    - name: Set up Python 2.7
       uses: actions/setup-python@v2
       with:
-        python-version: ${{ matrix.python-version }}
+        python-version: '2.7'
+
+    - name: Set up Python 3.8
+      uses: actions/setup-python@v2
+      with:
+        python-version: '3.8'
 
     - name: Install Dependencies
       run: |

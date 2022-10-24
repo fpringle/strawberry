@@ -11,3 +11,4 @@ if __name__ == "__main__":
     coverage = int(sys.argv[1])
     ofile = sys.argv[2]
     make_badge(coverage, ofile)
+    print(f"wrote doc coverage badge to {ofile}")
