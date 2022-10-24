@@ -41,6 +41,7 @@ jobs:
 
     - name: Generate doc coverage badge
       run: |
+        mkdir -p images
         python3.8 scripts/doc_badge.py "${{ env.DOC_COVERAGE }}" "images/doc_coverage.svg"
 
     - name: Verify Changed files
