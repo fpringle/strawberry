@@ -22,27 +22,27 @@ jobs:
 
     - name: Clone core submodule
       uses: actions/checkout@v2
-        with:
-          repository: fpringle/strawberryCore
-          path: src/core
-          ssh-key: ${{ secrets.SSH_KEY }}
-          persist-credentials: true
+      with:
+        repository: fpringle/strawberryCore
+        path: src/core
+        ssh-key: ${{ secrets.SSH_KEY }}
+        persist-credentials: true
 
     - name: Clone gui submodule
       uses: actions/checkout@v2
-        with:
-          repository: fpringle/strawberryGUI
-          path: src/gui
-          ssh-key: ${{ secrets.SSH_KEY }}
-          persist-credentials: true
+      with:
+        repository: fpringle/strawberryGUI
+        path: src/gui
+        ssh-key: ${{ secrets.SSH_KEY }}
+        persist-credentials: true
 
     - name: Clone uci submodule
       uses: actions/checkout@v2
-        with:
-          repository: fpringle/strawberryUCI
-          path: src/uci
-          ssh-key: ${{ secrets.SSH_KEY }}
-          persist-credentials: true
+      with:
+        repository: fpringle/strawberryUCI
+        path: src/uci
+        ssh-key: ${{ secrets.SSH_KEY }}
+        persist-credentials: true
 
     - name: Checkout submodules
       run: |
