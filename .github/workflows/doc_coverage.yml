@@ -14,11 +14,40 @@ jobs:
         python-version: [2.7, 3.8]
 
     steps:
-    - uses: actions/checkout@v2
+    - name: Checkout repo
+      uses: actions/checkout@v2
       with:
         fetch-depth: 0
-        submodules: recursive
 #        ref: refs/heads/${{ github.head_ref }}
+
+    - name: Clone core submodule
+      uses: actions/checkout@v2
+        with:
+          repository: fpringle/strawberryCore
+          path: src/core
+          ssh-key: ${{ secrets.SSH_KEY }}
+          persist-credentials: true
+
+    - name: Clone gui submodule
+      uses: actions/checkout@v2
+        with:
+          repository: fpringle/strawberryGUI
+          path: src/gui
+          ssh-key: ${{ secrets.SSH_KEY }}
+          persist-credentials: true
+
+    - name: Clone uci submodule
+      uses: actions/checkout@v2
+        with:
+          repository: fpringle/strawberryUCI
+          path: src/uci
+          ssh-key: ${{ secrets.SSH_KEY }}
+          persist-credentials: true
+
+    - name: Checkout submodules
+      run: |
+        git submodule init
+        git submodule update
 
     - name: Set up Python ${{ matrix.python-version }}
       uses: actions/setup-python@v2
