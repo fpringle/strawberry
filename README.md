@@ -6,7 +6,7 @@
   </a>
 </div>
 
-A C++ chess engine.
+A Chess engine and GUI written in C++. Read the documentation [here](https://fpringle.github.io/strawberry).
 
 ### Submodules
 strawberry has several components.
