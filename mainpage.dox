@@ -1,0 +1,74 @@
+/*! \mainpage
+ *
+ * \tableofcontents
+ *
+ * \section intro Introduction
+ *
+ * Strawberry is a Chess engine, GUI and interface, all written in C++.
+ * It can be played on the command-line, graphically in a GUI, or using the
+ * Universal Chess Interface (UCI) protocol.
+ *
+ * Strawberry contains 3 modules, each of which is its own repository.
+ *
+ * \subsection strawberry_core Core engine
+ *          
+ * The core of Strawberry is the engine, found in <a href="https://github.com/fpringle/strawberryCore">src/core</a>.
+ *
+ * \subsection strawberry_gui Graphical user interface (GUI)
+ *          
+ * Strawberry has a GUI that uses Qt 5 to let the user play on the screen, found in <a href="https://github.com/fpringle/strawberryGUI">src/gui</a>.
+ *
+ * \subsection strawberry_uci Universal chess interface (UCI)
+ *          
+ * The <a href="https://en.wikipedia.org/wiki/Universal_Chess_Interface">Universal Chess Interface (UCI)</a>
+ * is a standardised communication protocol that allows chess engines like Strawberry to communicate with
+ * user interfaces. The submodule is found in <a href="https://github.com/fpringle/strawberryUCI">src/uci</a>.
+ *
+ * \section install Installation
+ *
+ * First you'll need to download the source code:
+ *
+ *      ~$ git clone --recurse-submodules https://github.com/fpringle/strawberry.git
+ *      ~$ cd strawberry/
+ *
+ * \subsection install_engine_gui Building the engine and GUI
+ *
+ * \subsubsection install_dependencies Install dependencies
+ *
+ * All the submodules rely on Qt 5:
+ *
+ *      ~/strawberry$ sudo apt-get install qt5-default qt5-qmake qtbase5-dev-tools qt5-doc libqt5svg5 libqt5svg5-dev
+ *
+ * \subsubsection build_makefiles Build Makefiles using qmake
+ *
+ *      ~/strawberry$ qmake
+ *
+ * \subsubsection build_strawberry Build Strawberry
+ *
+ *      ~/strawberry$ make
+ *
+ * \subsection build_docs Building the documentation
+ *
+ * If needed, you can build the documentation locally:
+ *
+ * \subsubsection doc_dependencies Install doxygen
+ *
+ *      ~/strawberry$ sudo apt-get install doxygen
+ *
+ * \subsubsection run_doxygen Run doxygen to build documentation
+ *
+ *      ~/strawberry$ doxygen
+ *      ~/strawberry$ xdg-open docs/html/index.html
+ *
+ *
+ * \section run_strawberry Running Strawberry
+ *
+ * To play on the command-line:
+ *
+ *      ~/strawberry$ ./src/core/build/strawberryCLI
+ *
+ * To play with the GUI:
+ *
+ *      ~/strawberry$ ./src/gui/build/unix/strawberryGUI
+ *
+ */
