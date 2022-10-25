@@ -37,7 +37,7 @@ jobs:
 
     - name: Generate documentation
       run: |
-        rm -rf doc
+        rm -rf docs
         doxygen
 
     - name: Calculate documentation coverage and generate badge
@@ -51,12 +51,12 @@ jobs:
 
     - name: Remove Doxygen XML output
       run: |
-        rm -rf doc/xml
+        rm -rf docs/xml
 
-    - name: Move HTML to doc/ folder
+    - name: Move HTML to docs/ folder
       run: |
-        mv doc/html/* doc/
-        rm -rf doc/html
+        mv docs/html/* docs/
+        rm -rf docs/html
 
     - name: Verify Changed files
       uses: tj-actions/verify-changed-files@v12
@@ -64,14 +64,14 @@ jobs:
       with:
         files: |
           images/doc_coverage.svg
-          doc/*
+          docs/*
 
     - name: Commit files
       if: steps.changed_files.outputs.files_changed == 'true'
       run: |
         git config --local user.email "github-actions[bot]@users.noreply.github.com"
         git config --local user.name "github-actions[bot]"
-        git add images/doc_coverage.svg doc/
+        git add images/doc_coverage.svg docs/
         git commit -m "Updated documentation / coverage"
 
     - name: Push changes
