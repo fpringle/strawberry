@@ -5,7 +5,7 @@
 <meta http-equiv="X-UA-Compatible" content="IE=9"/>
 <meta name="generator" content="Doxygen 1.8.17"/>
 <meta name="viewport" content="width=device-width, initial-scale=1"/>
-<title>strawberry: src/core/action.h Source File</title>
+<title>strawberry: src/core/include/action.h Source File</title>
 <link href="tabs.css" rel="stylesheet" type="text/css"/>
 <script type="text/javascript" src="jquery.js"></script>
 <script type="text/javascript" src="dynsections.js"></script>
@@ -101,25 +101,26 @@ $(document).ready(function(){initNavTree('action_8h_source.html',''); initResiza
 <div class="line"><a name="l00011"></a><span class="lineno">   11</span>&#160;<span class="preprocessor">#include &quot;board.h&quot;</span></div>
 <div class="line"><a name="l00012"></a><span class="lineno">   12</span>&#160;<span class="preprocessor">#include &quot;move.h&quot;</span></div>
 <div class="line"><a name="l00013"></a><span class="lineno">   13</span>&#160; </div>
-<div class="line"><a name="l00014"></a><span class="lineno">   14</span>&#160;<span class="keyword">namespace </span><a class="code" href="namespacechessCore.html">chessCore</a> {</div>
+<div class="line"><a name="l00014"></a><span class="lineno"><a class="line" href="namespacechessCore.html">   14</a></span>&#160;<span class="keyword">namespace </span><a class="code" href="namespacechessCore.html">chessCore</a> {</div>
 <div class="line"><a name="l00015"></a><span class="lineno">   15</span>&#160; </div>
-<div class="line"><a name="l00023"></a><span class="lineno">   23</span>&#160;Board <a class="code" href="namespacechessCore.html#a530d8bf5ee96612cb4fe04ff5dd689fe">doMove</a>(Board startBoard, <a class="code" href="namespacechessCore.html#a75b134c10d18d748c2e907ede1bf7c39">move_t</a> move);</div>
+<div class="line"><a name="l00023"></a><span class="lineno">   23</span>&#160;<a class="code" href="classchessCore_1_1Board.html">Board</a> <a class="code" href="namespacechessCore.html#a530d8bf5ee96612cb4fe04ff5dd689fe">doMove</a>(<a class="code" href="classchessCore_1_1Board.html">Board</a> startBoard, <a class="code" href="namespacechessCore.html#a75b134c10d18d748c2e907ede1bf7c39">move_t</a> move);</div>
 <div class="line"><a name="l00024"></a><span class="lineno">   24</span>&#160; </div>
-<div class="line"><a name="l00032"></a><span class="lineno">   32</span>&#160;Board* <a class="code" href="namespacechessCore.html#a530d8bf5ee96612cb4fe04ff5dd689fe">doMove</a>(Board* startBoard, <a class="code" href="namespacechessCore.html#a75b134c10d18d748c2e907ede1bf7c39">move_t</a> move);</div>
+<div class="line"><a name="l00032"></a><span class="lineno">   32</span>&#160;<a class="code" href="classchessCore_1_1Board.html">Board</a>* <a class="code" href="namespacechessCore.html#a530d8bf5ee96612cb4fe04ff5dd689fe">doMove</a>(<a class="code" href="classchessCore_1_1Board.html">Board</a>* startBoard, <a class="code" href="namespacechessCore.html#a75b134c10d18d748c2e907ede1bf7c39">move_t</a> move);</div>
 <div class="line"><a name="l00033"></a><span class="lineno">   33</span>&#160; </div>
 <div class="line"><a name="l00034"></a><span class="lineno">   34</span>&#160;}  <span class="comment">// namespace chessCore</span></div>
 <div class="line"><a name="l00035"></a><span class="lineno">   35</span>&#160; </div>
 <div class="line"><a name="l00036"></a><span class="lineno">   36</span>&#160;<span class="preprocessor">#endif  // SRC_CORE_ACTION_H_</span></div>
 </div><!-- fragment --></div><!-- contents -->
 </div><!-- doc-content -->
-<div class="ttc" id="anamespacechessCore_html"><div class="ttname"><a href="namespacechessCore.html">chessCore</a></div><div class="ttdoc">The main namespace for the core chess engine.</div><div class="ttdef"><b>Definition:</b> action.cpp:20</div></div>
+<div class="ttc" id="anamespacechessCore_html"><div class="ttname"><a href="namespacechessCore.html">chessCore</a></div><div class="ttdoc">The main namespace for the core chess engine.</div><div class="ttdef"><b>Definition:</b> action.h:14</div></div>
 <div class="ttc" id="anamespacechessCore_html_a530d8bf5ee96612cb4fe04ff5dd689fe"><div class="ttname"><a href="namespacechessCore.html#a530d8bf5ee96612cb4fe04ff5dd689fe">chessCore::doMove</a></div><div class="ttdeci">Board doMove(Board startBoard, move_t move)</div><div class="ttdef"><b>Definition:</b> action.cpp:23</div></div>
+<div class="ttc" id="aclasschessCore_1_1Board_html"><div class="ttname"><a href="classchessCore_1_1Board.html">chessCore::Board</a></div><div class="ttdoc">Represents the state of the chessboard.</div><div class="ttdef"><b>Definition:</b> board.h:87</div></div>
 <div class="ttc" id="anamespacechessCore_html_a75b134c10d18d748c2e907ede1bf7c39"><div class="ttname"><a href="namespacechessCore.html#a75b134c10d18d748c2e907ede1bf7c39">chessCore::move_t</a></div><div class="ttdeci">uint16_t move_t</div><div class="ttdef"><b>Definition:</b> typedefs.h:32</div></div>
 <!-- start footer part -->
 <div id="nav-path" class="navpath"><!-- id is needed for treeview function! -->
   <ul>
-    <li class="navelem"><a class="el" href="dir_68267d1309a1af8e8297ef4c3efbcdba.html">src</a></li><li class="navelem"><a class="el" href="dir_aebb8dcc11953d78e620bbef0b9e2183.html">core</a></li><li class="navelem"><b>action.h</b></li>
-    <li class="footer">Generated on Tue Oct 25 2022 12:34:06 for strawberry by
+    <li class="navelem"><a class="el" href="dir_68267d1309a1af8e8297ef4c3efbcdba.html">src</a></li><li class="navelem"><a class="el" href="dir_aebb8dcc11953d78e620bbef0b9e2183.html">core</a></li><li class="navelem"><a class="el" href="dir_8f49dd062eda24395df599c5385a3cb1.html">include</a></li><li class="navelem"><b>action.h</b></li>
+    <li class="footer">Generated on Tue Oct 25 2022 15:02:39 for strawberry by
     <a href="http://www.doxygen.org/index.html">
     <img class="footer" src="doxygen.png" alt="doxygen"/></a> 1.8.17 </li>
   </ul>

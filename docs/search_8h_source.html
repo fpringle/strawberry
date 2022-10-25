@@ -5,7 +5,7 @@
 <meta http-equiv="X-UA-Compatible" content="IE=9"/>
 <meta name="generator" content="Doxygen 1.8.17"/>
 <meta name="viewport" content="width=device-width, initial-scale=1"/>
-<title>strawberry: src/core/search.h Source File</title>
+<title>strawberry: src/core/include/search.h Source File</title>
 <link href="tabs.css" rel="stylesheet" type="text/css"/>
 <script type="text/javascript" src="jquery.js"></script>
 <script type="text/javascript" src="dynsections.js"></script>
@@ -122,7 +122,7 @@ $(document).ready(function(){initNavTree('search_8h_source.html',''); initResiza
 <div class="line"><a name="l00051"></a><span class="lineno"><a class="line" href="structchessCore_1_1record__t.html#a5c4d45ef65419cd8a0c26c168a5cd5c9">   51</a></span>&#160;    <a class="code" href="namespacechessCore.html#a18cabf6cdaf5a33b7d6b5abf1402c2fb">valueType</a> <a class="code" href="structchessCore_1_1record__t.html#a5c4d45ef65419cd8a0c26c168a5cd5c9">flag</a>;</div>
 <div class="line"><a name="l00052"></a><span class="lineno">   52</span>&#160;};</div>
 <div class="line"><a name="l00053"></a><span class="lineno">   53</span>&#160; </div>
-<div class="line"><a name="l00061"></a><span class="lineno">   61</span>&#160;std::ostream&amp; <a class="code" href="namespacechessCore.html#a2bdf283a342711a06f29cec1195c75cb">operator&lt;&lt;</a>(std::ostream&amp; out, <span class="keyword">const</span> <a class="code" href="structchessCore_1_1record__t.html">record_t</a>&amp; rec);</div>
+<div class="line"><a name="l00061"></a><span class="lineno">   61</span>&#160;std::ostream&amp; <a class="code" href="namespacechessCore.html#acf452ad74430b7d7e2d689b001bf6f48">operator&lt;&lt;</a>(std::ostream&amp; out, <span class="keyword">const</span> <a class="code" href="structchessCore_1_1record__t.html">record_t</a>&amp; rec);</div>
 <div class="line"><a name="l00062"></a><span class="lineno">   62</span>&#160; </div>
 <div class="line"><a name="l00067"></a><span class="lineno"><a class="line" href="classchessCore_1_1Searcher.html">   67</a></span>&#160;<span class="keyword">class </span><a class="code" href="classchessCore_1_1Searcher.html">Searcher</a> {</div>
 <div class="line"><a name="l00068"></a><span class="lineno">   68</span>&#160; <span class="keyword">private</span>:</div>
@@ -173,10 +173,9 @@ $(document).ready(function(){initNavTree('search_8h_source.html',''); initResiza
 <div class="line"><a name="l00205"></a><span class="lineno">  205</span>&#160;<span class="preprocessor">#endif  // SRC_CORE_SEARCH_H_</span></div>
 </div><!-- fragment --></div><!-- contents -->
 </div><!-- doc-content -->
-<div class="ttc" id="anamespacechessCore_html"><div class="ttname"><a href="namespacechessCore.html">chessCore</a></div><div class="ttdoc">The main namespace for the core chess engine.</div><div class="ttdef"><b>Definition:</b> action.cpp:20</div></div>
+<div class="ttc" id="anamespacechessCore_html"><div class="ttname"><a href="namespacechessCore.html">chessCore</a></div><div class="ttdoc">The main namespace for the core chess engine.</div><div class="ttdef"><b>Definition:</b> action.h:14</div></div>
 <div class="ttc" id="aclasschessCore_1_1Searcher_html_a47c2d61fb066642f507e4cbfcafa2631"><div class="ttname"><a href="classchessCore_1_1Searcher.html#a47c2d61fb066642f507e4cbfcafa2631">chessCore::Searcher::search_end_time</a></div><div class="ttdeci">clock_t search_end_time</div><div class="ttdef"><b>Definition:</b> search.h:78</div></div>
 <div class="ttc" id="aclasschessCore_1_1Searcher_html_ad7c35b4d4ef0c6519ef55e41cd3acce8"><div class="ttname"><a href="classchessCore_1_1Searcher.html#ad7c35b4d4ef0c6519ef55e41cd3acce8">chessCore::Searcher::trans_table</a></div><div class="ttdeci">TransTable * trans_table</div><div class="ttdef"><b>Definition:</b> search.h:72</div></div>
-<div class="ttc" id="anamespacechessCore_html_a2bdf283a342711a06f29cec1195c75cb"><div class="ttname"><a href="namespacechessCore.html#a2bdf283a342711a06f29cec1195c75cb">chessCore::operator&lt;&lt;</a></div><div class="ttdeci">std::ostream &amp; operator&lt;&lt;(std::ostream &amp;out, const Board &amp;brd)</div><div class="ttdef"><b>Definition:</b> board.cpp:583</div></div>
 <div class="ttc" id="anamespacechessCore_html_a18cabf6cdaf5a33b7d6b5abf1402c2fb"><div class="ttname"><a href="namespacechessCore.html#a18cabf6cdaf5a33b7d6b5abf1402c2fb">chessCore::valueType</a></div><div class="ttdeci">valueType</div><div class="ttdef"><b>Definition:</b> search.h:25</div></div>
 <div class="ttc" id="aclasschessCore_1_1Board_html"><div class="ttname"><a href="classchessCore_1_1Board.html">chessCore::Board</a></div><div class="ttdoc">Represents the state of the chessboard.</div><div class="ttdef"><b>Definition:</b> board.h:87</div></div>
 <div class="ttc" id="aclasschessCore_1_1Searcher_html_adcf041d0e980cd8e6da8b19e67a03fc9"><div class="ttname"><a href="classchessCore_1_1Searcher.html#adcf041d0e980cd8e6da8b19e67a03fc9">chessCore::Searcher::Searcher</a></div><div class="ttdeci">Searcher()</div><div class="ttdef"><b>Definition:</b> search.cpp:40</div></div>
@@ -194,11 +193,12 @@ $(document).ready(function(){initNavTree('search_8h_source.html',''); initResiza
 <div class="ttc" id="aclasschessCore_1_1Searcher_html"><div class="ttname"><a href="classchessCore_1_1Searcher.html">chessCore::Searcher</a></div><div class="ttdoc">A class to do all of the searching for the chess engine.</div><div class="ttdef"><b>Definition:</b> search.h:67</div></div>
 <div class="ttc" id="aclasschessCore_1_1Searcher_html_afdd63e0c716b8c3734ffa379b454e1ed"><div class="ttname"><a href="classchessCore_1_1Searcher.html#afdd63e0c716b8c3734ffa379b454e1ed">chessCore::Searcher::iterative_deepening_pv</a></div><div class="ttdeci">move_t iterative_deepening_pv(Board *b, int timeout, bool cutoff=false)</div><div class="ttdef"><b>Definition:</b> search.cpp:436</div></div>
 <div class="ttc" id="astructchessCore_1_1record__t_html_a538159ca5a263123987e68f37cc743ac"><div class="ttname"><a href="structchessCore_1_1record__t.html#a538159ca5a263123987e68f37cc743ac">chessCore::record_t::best_move</a></div><div class="ttdeci">move_t best_move</div><div class="ttdef"><b>Definition:</b> search.h:40</div></div>
+<div class="ttc" id="anamespacechessCore_html_acf452ad74430b7d7e2d689b001bf6f48"><div class="ttname"><a href="namespacechessCore.html#acf452ad74430b7d7e2d689b001bf6f48">chessCore::operator&lt;&lt;</a></div><div class="ttdeci">std::ostream &amp; operator&lt;&lt;(std::ostream &amp;out, const record_t &amp;rec)</div><div class="ttdef"><b>Definition:</b> search.cpp:27</div></div>
 <div class="ttc" id="aclasschessCore_1_1Searcher_html_ab3b9ac265e727188d7604ac97356893a"><div class="ttname"><a href="classchessCore_1_1Searcher.html#ab3b9ac265e727188d7604ac97356893a">chessCore::Searcher::iterative_deepening_negamax</a></div><div class="ttdeci">move_t iterative_deepening_negamax(Board *b, int timeout, bool cutoff=false)</div><div class="ttdef"><b>Definition:</b> search.cpp:378</div></div>
 <div class="ttc" id="astructchessCore_1_1record__t_html"><div class="ttname"><a href="structchessCore_1_1record__t.html">chessCore::record_t</a></div><div class="ttdoc">A struct for recording search details, used in the transposition table.</div><div class="ttdef"><b>Definition:</b> search.h:36</div></div>
 <div class="ttc" id="aclasschessCore_1_1Searcher_html_a171e44677ecac3497d0eca83a5c6fefa"><div class="ttname"><a href="classchessCore_1_1Searcher.html#a171e44677ecac3497d0eca83a5c6fefa">chessCore::Searcher::search</a></div><div class="ttdeci">move_t search(Board *b, int timeout, bool cutoff=false)</div><div class="ttdef"><b>Definition:</b> search.cpp:494</div></div>
 <div class="ttc" id="aclasschessCore_1_1Searcher_html_a7abe834581fa532e6655e8e102084e54"><div class="ttname"><a href="classchessCore_1_1Searcher.html#a7abe834581fa532e6655e8e102084e54">chessCore::Searcher::set_timeout</a></div><div class="ttdeci">void set_timeout(int time)</div><div class="ttdef"><b>Definition:</b> search.cpp:52</div></div>
-<div class="ttc" id="anamespacechessCore_html_a9e916e07a19695054589e1698c700f96"><div class="ttname"><a href="namespacechessCore.html#a9e916e07a19695054589e1698c700f96">chessCore::b</a></div><div class="ttdeci">const uint64_t b</div><div class="ttdef"><b>Definition:</b> hash.cpp:32</div></div>
+<div class="ttc" id="anamespacechessCore_html_a9e916e07a19695054589e1698c700f96"><div class="ttname"><a href="namespacechessCore.html#a9e916e07a19695054589e1698c700f96">chessCore::b</a></div><div class="ttdeci">const uint64_t b</div><div class="ttdef"><b>Definition:</b> hash.h:20</div></div>
 <div class="ttc" id="astructchessCore_1_1record__t_html_ab6f276082172be43a6041212071e377b"><div class="ttname"><a href="structchessCore_1_1record__t.html#ab6f276082172be43a6041212071e377b">chessCore::record_t::depth</a></div><div class="ttdeci">uint8_t depth</div><div class="ttdef"><b>Definition:</b> search.h:42</div></div>
 <div class="ttc" id="astructchessCore_1_1record__t_html_afdc7f88e164103e4a16923869071899f"><div class="ttname"><a href="structchessCore_1_1record__t.html#afdc7f88e164103e4a16923869071899f">chessCore::record_t::signature</a></div><div class="ttdeci">uint64_t signature</div><div class="ttdef"><b>Definition:</b> search.h:38</div></div>
 <div class="ttc" id="aclasschessCore_1_1Searcher_html_a26d778dc3bd2d2ace892db03e840f2aa"><div class="ttname"><a href="classchessCore_1_1Searcher.html#a26d778dc3bd2d2ace892db03e840f2aa">chessCore::Searcher::~Searcher</a></div><div class="ttdeci">virtual ~Searcher()</div><div class="ttdef"><b>Definition:</b> search.cpp:48</div></div>
@@ -206,8 +206,8 @@ $(document).ready(function(){initNavTree('search_8h_source.html',''); initResiza
 <!-- start footer part -->
 <div id="nav-path" class="navpath"><!-- id is needed for treeview function! -->
   <ul>
-    <li class="navelem"><a class="el" href="dir_68267d1309a1af8e8297ef4c3efbcdba.html">src</a></li><li class="navelem"><a class="el" href="dir_aebb8dcc11953d78e620bbef0b9e2183.html">core</a></li><li class="navelem"><b>search.h</b></li>
-    <li class="footer">Generated on Tue Oct 25 2022 12:34:06 for strawberry by
+    <li class="navelem"><a class="el" href="dir_68267d1309a1af8e8297ef4c3efbcdba.html">src</a></li><li class="navelem"><a class="el" href="dir_aebb8dcc11953d78e620bbef0b9e2183.html">core</a></li><li class="navelem"><a class="el" href="dir_8f49dd062eda24395df599c5385a3cb1.html">include</a></li><li class="navelem"><b>search.h</b></li>
+    <li class="footer">Generated on Tue Oct 25 2022 15:02:39 for strawberry by
     <a href="http://www.doxygen.org/index.html">
     <img class="footer" src="doxygen.png" alt="doxygen"/></a> 1.8.17 </li>
   </ul>

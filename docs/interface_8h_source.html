@@ -5,7 +5,7 @@
 <meta http-equiv="X-UA-Compatible" content="IE=9"/>
 <meta name="generator" content="Doxygen 1.8.17"/>
 <meta name="viewport" content="width=device-width, initial-scale=1"/>
-<title>strawberry: src/uci/interface.h Source File</title>
+<title>strawberry: src/uci/include/interface.h Source File</title>
 <link href="tabs.css" rel="stylesheet" type="text/css"/>
 <script type="text/javascript" src="jquery.js"></script>
 <script type="text/javascript" src="dynsections.js"></script>
@@ -113,7 +113,7 @@ $(document).ready(function(){initNavTree('interface_8h_source.html',''); initRes
 <div class="line"><a name="l00023"></a><span class="lineno">   23</span>&#160; </div>
 <div class="line"><a name="l00032"></a><span class="lineno">   32</span>&#160;<span class="keyword">namespace </span><a class="code" href="namespacechessUCI.html">chessUCI</a> {</div>
 <div class="line"><a name="l00033"></a><span class="lineno">   33</span>&#160; </div>
-<div class="line"><a name="l00035"></a><span class="lineno">   35</span>&#160;<span class="keyword">namespace </span>MessageTypes {</div>
+<div class="line"><a name="l00035"></a><span class="lineno"><a class="line" href="namespacechessUCI_1_1MessageTypes.html">   35</a></span>&#160;<span class="keyword">namespace </span>MessageTypes {</div>
 <div class="line"><a name="l00040"></a><span class="lineno"><a class="line" href="namespacechessUCI_1_1MessageTypes.html#adcfdab5f1a3633c468fb7678a69b1f2d">   40</a></span>&#160;<span class="keyword">enum</span> <a class="code" href="namespacechessUCI_1_1MessageTypes.html#adcfdab5f1a3633c468fb7678a69b1f2d">GUIMessage</a> {</div>
 <div class="line"><a name="l00041"></a><span class="lineno">   41</span>&#160;    uci_message,</div>
 <div class="line"><a name="l00042"></a><span class="lineno">   42</span>&#160;    debug_message,</div>
@@ -369,7 +369,7 @@ $(document).ready(function(){initNavTree('interface_8h_source.html',''); initRes
 <div class="ttc" id="aclasschessUCI_1_1chessInterface_html_ac219f4f69a536e70ed39d60935e642e1"><div class="ttname"><a href="classchessUCI_1_1chessInterface.html#ac219f4f69a536e70ed39d60935e642e1">chessUCI::chessInterface::handleUCIMessage</a></div><div class="ttdeci">void handleUCIMessage()</div><div class="ttdef"><b>Definition:</b> interface.cpp:373</div></div>
 <div class="ttc" id="aclasschessUCI_1_1chessInterface_html_a0c3875277539219192c033780080e567"><div class="ttname"><a href="classchessUCI_1_1chessInterface.html#a0c3875277539219192c033780080e567">chessUCI::chessInterface::handleQuitMessage</a></div><div class="ttdeci">void handleQuitMessage()</div><div class="ttdef"><b>Definition:</b> interface.cpp:448</div></div>
 <div class="ttc" id="aclasschessUCI_1_1chessInterface_html_ac795eeabae9d95426fe29f6510f43334"><div class="ttname"><a href="classchessUCI_1_1chessInterface.html#ac795eeabae9d95426fe29f6510f43334">chessUCI::chessInterface::handleUCINewGameMessage</a></div><div class="ttdeci">void handleUCINewGameMessage()</div><div class="ttdef"><b>Definition:</b> interface.cpp:399</div></div>
-<div class="ttc" id="anamespacechessUCI_html"><div class="ttname"><a href="namespacechessUCI.html">chessUCI</a></div><div class="ttdoc">The namespace for the UCI interface of the chess engine.</div><div class="ttdef"><b>Definition:</b> interface.cpp:22</div></div>
+<div class="ttc" id="anamespacechessUCI_html"><div class="ttname"><a href="namespacechessUCI.html">chessUCI</a></div><div class="ttdoc">The namespace for the UCI interface of the chess engine.</div></div>
 <div class="ttc" id="aclasschessUCI_1_1chessInterface_html_abb06d6f1c044fec941eb4f981f8ab9ce"><div class="ttname"><a href="classchessUCI_1_1chessInterface.html#abb06d6f1c044fec941eb4f981f8ab9ce">chessUCI::chessInterface::engine_name</a></div><div class="ttdeci">std::string engine_name</div><div class="ttdef"><b>Definition:</b> interface.h:230</div></div>
 <div class="ttc" id="astructchessUCI_1_1MessageTypes_1_1GoMessage_html_ae95735a89e03b24e85a2f3e1654186cf"><div class="ttname"><a href="structchessUCI_1_1MessageTypes_1_1GoMessage.html#ae95735a89e03b24e85a2f3e1654186cf">chessUCI::MessageTypes::GoMessage::movetime</a></div><div class="ttdeci">uint32_t movetime</div><div class="ttdef"><b>Definition:</b> interface.h:205</div></div>
 <div class="ttc" id="astructchessUCI_1_1MessageTypes_1_1OptionMessage_html_a315419f26d3c59fa143b49b90a019049"><div class="ttname"><a href="structchessUCI_1_1MessageTypes_1_1OptionMessage.html#a315419f26d3c59fa143b49b90a019049">chessUCI::MessageTypes::OptionMessage::valid</a></div><div class="ttdeci">bool valid() const</div><div class="ttdef"><b>Definition:</b> interface.cpp:162</div></div>
@@ -400,8 +400,8 @@ $(document).ready(function(){initNavTree('interface_8h_source.html',''); initRes
 <!-- start footer part -->
 <div id="nav-path" class="navpath"><!-- id is needed for treeview function! -->
   <ul>
-    <li class="navelem"><a class="el" href="dir_68267d1309a1af8e8297ef4c3efbcdba.html">src</a></li><li class="navelem"><a class="el" href="dir_522fe5b055c97b51bcd19333f401fe37.html">uci</a></li><li class="navelem"><b>interface.h</b></li>
-    <li class="footer">Generated on Tue Oct 25 2022 12:34:06 for strawberry by
+    <li class="navelem"><a class="el" href="dir_68267d1309a1af8e8297ef4c3efbcdba.html">src</a></li><li class="navelem"><a class="el" href="dir_522fe5b055c97b51bcd19333f401fe37.html">uci</a></li><li class="navelem"><a class="el" href="dir_ad0e4dc134383d65b524c867f216dd52.html">include</a></li><li class="navelem"><b>interface.h</b></li>
+    <li class="footer">Generated on Tue Oct 25 2022 15:02:39 for strawberry by
     <a href="http://www.doxygen.org/index.html">
     <img class="footer" src="doxygen.png" alt="doxygen"/></a> 1.8.17 </li>
   </ul>

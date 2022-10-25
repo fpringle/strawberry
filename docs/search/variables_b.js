@@ -1,6 +1,6 @@
 var searchData=
 [
-  ['n_697',['N',['../namespacechessCore.html#a8eee69f4f513623c72ccbaea4e0fb706',1,'chessCore::N()'],['../namespacechessCore.html#a40535648edd1c9f6919560f01f2b046e',1,'chessCore::n()']]],
+  ['n_697',['n',['../namespacechessCore.html#a40535648edd1c9f6919560f01f2b046e',1,'chessCore::n()'],['../namespacechessCore.html#a8eee69f4f513623c72ccbaea4e0fb706',1,'chessCore::N()']]],
   ['name_698',['name',['../structchessUCI_1_1MessageTypes_1_1OptionMessage.html#a9b45b3e13bd9167aab02e17e08916231',1,'chessUCI::MessageTypes::OptionMessage']]],
   ['ne_699',['NE',['../namespacechessCore.html#a4000768525892668f60d1b2a4f4d69ed',1,'chessCore']]],
   ['nne_700',['NNE',['../namespacechessCore.html#ab2dfa8fea7aac89fd1b359f0b8fb3d83',1,'chessCore']]],
