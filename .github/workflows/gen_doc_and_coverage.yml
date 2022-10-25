@@ -1,4 +1,4 @@
-name: Documentation coverage
+name: Documentation and coverage
 
 on:
   push:
@@ -37,6 +37,7 @@ jobs:
 
     - name: Generate documentation
       run: |
+        rm -rf doc
         doxygen
 
     - name: Calculate documentation coverage and generate badge
@@ -48,14 +49,22 @@ jobs:
         mkdir -p images
         python3.8 scripts/doc_badge.py "${{ env.DOC_COVERAGE }}" "images/doc_coverage.svg"
 
-    - run: |
-        git status
+    - name: Remove Doxygen XML output
+      run: |
+        rm -rf doc/xml
+
+    - name: Move HTML to doc/ folder
+      run: |
+        mv doc/html/* doc/
+        rm -rf doc/html
 
     - name: Verify Changed files
       uses: tj-actions/verify-changed-files@v12
       id: changed_files
       with:
-        files: images/doc_coverage.svg
+        files: |
+          images/doc_coverage.svg
+          doc/*
 
     - name: Commit files
       if: steps.changed_files.outputs.files_changed == 'true'
@@ -63,7 +72,7 @@ jobs:
         git config --local user.email "github-actions[bot]@users.noreply.github.com"
         git config --local user.name "github-actions[bot]"
         git add images/doc_coverage.svg
-        git commit -m "Updated images/doc_coverage.svg"
+        git commit -m "Updated documentation / coverage"
 
     - name: Push changes
       if: steps.changed_files.outputs.files_changed == 'true'
