@@ -71,7 +71,7 @@ jobs:
       run: |
         git config --local user.email "github-actions[bot]@users.noreply.github.com"
         git config --local user.name "github-actions[bot]"
-        git add images/doc_coverage.svg
+        git add images/doc_coverage.svg doc/
         git commit -m "Updated documentation / coverage"
 
     - name: Push changes
