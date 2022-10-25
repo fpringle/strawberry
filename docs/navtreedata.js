@@ -23,6 +23,23 @@ for the JavaScript code in this file
 var NAVTREE =
 [
   [ "strawberry", "index.html", [
+    [ "Introduction", "index.html#intro", [
+      [ "Core engine", "index.html#strawberry_core", null ],
+      [ "Graphical user interface (GUI)", "index.html#strawberry_gui", null ],
+      [ "Universal chess interface (UCI)", "index.html#strawberry_uci", null ]
+    ] ],
+    [ "Installation", "index.html#install", [
+      [ "Building the engine and GUI", "index.html#install_engine_gui", [
+        [ "Install dependencies", "index.html#install_dependencies", null ],
+        [ "Build Makefiles using qmake", "index.html#build_makefiles", null ],
+        [ "Build Strawberry", "index.html#build_strawberry", null ]
+      ] ],
+      [ "Building the documentation", "index.html#build_docs", [
+        [ "Install doxygen", "index.html#doc_dependencies", null ],
+        [ "Run doxygen to build documentation", "index.html#run_doxygen", null ]
+      ] ]
+    ] ],
+    [ "Running Strawberry", "index.html#run_strawberry", null ],
     [ "Namespaces", "namespaces.html", [
       [ "Namespace List", "namespaces.html", "namespaces_dup" ],
       [ "Namespace Members", "namespacemembers.html", [

@@ -17,6 +17,7 @@
 <script type="text/javascript" src="search/searchdata.js"></script>
 <script type="text/javascript" src="search/search.js"></script>
 <link href="doxygen.css" rel="stylesheet" type="text/css" />
+<link href="doxygen-awesome.css" rel="stylesheet" type="text/css"/>
 </head>
 <body>
 <div id="top"><!-- do not remove this div, it is closed by doxygen! -->
@@ -82,17 +83,80 @@ $(document).ready(function(){initNavTree('index.html',''); initResizable(); });
 </iframe>
 </div>
 
-<div class="header">
+<div class="PageDoc"><div class="header">
   <div class="headertitle">
 <div class="title">strawberry Documentation</div>  </div>
 </div><!--header-->
 <div class="contents">
+<div class="toc"><h3>Table of Contents</h3>
+<ul><li class="level1"><a href="#intro">Introduction</a><ul><li class="level2"><a href="#strawberry_core">Core engine</a></li>
+<li class="level2"><a href="#strawberry_gui">Graphical user interface (GUI)</a></li>
+<li class="level2"><a href="#strawberry_uci">Universal chess interface (UCI)</a></li>
+</ul>
+</li>
+<li class="level1"><a href="#install">Installation</a><ul><li class="level2"><a href="#install_engine_gui">Building the engine and GUI</a><ul><li class="level3"><a href="#install_dependencies">Install dependencies</a></li>
+<li class="level3"><a href="#build_makefiles">Build Makefiles using qmake</a></li>
+<li class="level3"><a href="#build_strawberry">Build Strawberry</a></li>
+</ul>
+</li>
+<li class="level2"><a href="#build_docs">Building the documentation</a><ul><li class="level3"><a href="#doc_dependencies">Install doxygen</a></li>
+<li class="level3"><a href="#run_doxygen">Run doxygen to build documentation</a></li>
+</ul>
+</li>
+</ul>
+</li>
+<li class="level1"><a href="#run_strawberry">Running Strawberry</a></li>
+</ul>
+</div>
+<div class="textblock"><h1><a class="anchor" id="intro"></a>
+Introduction</h1>
+<p>Strawberry is a Chess engine, GUI and interface, all written in C++. It can be played on the command-line, graphically in a GUI, or using the Universal Chess Interface (UCI) protocol.</p>
+<p>Strawberry contains 3 modules, each of which is its own repository.</p>
+<h2><a class="anchor" id="strawberry_core"></a>
+Core engine</h2>
+<p>The core of Strawberry is the engine, found in <a href="https://github.com/fpringle/strawberryCore">src/core</a>.</p>
+<h2><a class="anchor" id="strawberry_gui"></a>
+Graphical user interface (GUI)</h2>
+<p>Strawberry has a GUI that uses Qt 5 to let the user play on the screen, found in <a href="https://github.com/fpringle/strawberryGUI">src/gui</a>.</p>
+<h2><a class="anchor" id="strawberry_uci"></a>
+Universal chess interface (UCI)</h2>
+<p>The <a href="https://en.wikipedia.org/wiki/Universal_Chess_Interface">Universal Chess Interface (UCI)</a> is a standardised communication protocol that allows chess engines like Strawberry to communicate with user interfaces. The submodule is found in <a href="https://github.com/fpringle/strawberryUCI">src/uci</a>.</p>
+<h1><a class="anchor" id="install"></a>
+Installation</h1>
+<p>First you'll need to download the source code: </p><pre class="fragment"> ~$ git clone --recurse-submodules https://github.com/fpringle/strawberry.git
+ ~$ cd strawberry/
+</pre><h2><a class="anchor" id="install_engine_gui"></a>
+Building the engine and GUI</h2>
+<h3><a class="anchor" id="install_dependencies"></a>
+Install dependencies</h3>
+<p>All the submodules rely on Qt 5: </p><pre class="fragment"> ~/strawberry$ sudo apt-get install qt5-default qt5-qmake qtbase5-dev-tools qt5-doc libqt5svg5 libqt5svg5-dev
+</pre><h3><a class="anchor" id="build_makefiles"></a>
+Build Makefiles using qmake</h3>
+<pre class="fragment"> ~/strawberry$ qmake
+</pre><h3><a class="anchor" id="build_strawberry"></a>
+Build Strawberry</h3>
+<pre class="fragment"> ~/strawberry$ make
+</pre><h2><a class="anchor" id="build_docs"></a>
+Building the documentation</h2>
+<p>If needed, you can build the documentation locally:</p>
+<h3><a class="anchor" id="doc_dependencies"></a>
+Install doxygen</h3>
+<pre class="fragment"> ~/strawberry$ sudo apt-get install doxygen
+</pre><h3><a class="anchor" id="run_doxygen"></a>
+Run doxygen to build documentation</h3>
+<pre class="fragment"> ~/strawberry$ doxygen
+ ~/strawberry$ xdg-open docs/html/index.html
+</pre><h1><a class="anchor" id="run_strawberry"></a>
+Running Strawberry</h1>
+<p>To play on the command-line: </p><pre class="fragment"> ~/strawberry$ ./src/core/build/strawberryCLI
+</pre><p>To play with the GUI: </p><pre class="fragment"> ~/strawberry$ ./src/gui/build/unix/strawberryGUI
+</pre> </div></div><!-- PageDoc -->
 </div><!-- contents -->
 </div><!-- doc-content -->
 <!-- start footer part -->
 <div id="nav-path" class="navpath"><!-- id is needed for treeview function! -->
   <ul>
-    <li class="footer">Generated on Tue Oct 25 2022 11:23:56 for strawberry by
+    <li class="footer">Generated on Tue Oct 25 2022 12:25:48 for strawberry by
     <a href="http://www.doxygen.org/index.html">
     <img class="footer" src="doxygen.png" alt="doxygen"/></a> 1.8.17 </li>
   </ul>
