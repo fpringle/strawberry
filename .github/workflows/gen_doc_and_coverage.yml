@@ -51,7 +51,7 @@ jobs:
     - name: Move HTML to docs/ folder
       run: |
         rm -rf docs
-        mv docs/html docs
+        mv doc/html docs
 
     - name: Verify Changed files
       uses: tj-actions/verify-changed-files@v12
