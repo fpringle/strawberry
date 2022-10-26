@@ -37,7 +37,6 @@ jobs:
 
     - name: Generate documentation
       run: |
-        rm -rf docs
         doxygen
 
     - name: Calculate documentation coverage and generate badge
@@ -49,14 +48,10 @@ jobs:
         mkdir -p images
         python3.8 scripts/doc_badge.py "${{ env.DOC_COVERAGE }}" "images/doc_coverage.svg"
 
-    - name: Remove Doxygen XML output
-      run: |
-        rm -rf docs/xml
-
     - name: Move HTML to docs/ folder
       run: |
-        mv docs/html/* docs/
-        rm -rf docs/html
+        rm -rf docs
+        mv docs/html docs
 
     - name: Verify Changed files
       uses: tj-actions/verify-changed-files@v12

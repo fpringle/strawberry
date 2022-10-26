@@ -3,6 +3,7 @@
 /obj/
 /build/
 /dist/
+/doc/
 /log/
 /__pycache__/
 /tests/bin/
