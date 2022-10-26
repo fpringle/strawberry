@@ -1,3 +1,5 @@
+<img src="images/screenshot.png" title="Strawberry title image">
+
 # strawberry
 
 <div>
