@@ -28,6 +28,29 @@ strawberry has several components.
   - all submodules need qmake to generate makefile
   - strawberryGUI needs Qt core and Qt gui
 
+## Build instructions
+Make sure to clone the submodules:
+```bash
+git submodule init
+git submodule update
+```
+
+From the root directory:
+```bash
+qmake
+make
+```
+
+To run the GUI:
+```bash
+./src/gui/build/unix/strawberryGUI
+```
+
+To play on the command-line:
+```bash
+./src/core/build/strawberryCLI
+```
+
 ## Accreditation
 
 Thanks to [Peter Wong](http://www.virtualpieces.net/) for the Chess piece icons.
